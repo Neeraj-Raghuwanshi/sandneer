@@ -1,0 +1,200 @@
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-keytable-bs/keyTable.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-responsive-bs/responsive.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          <%= @parent.name %>
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <%= render_breadcrumbs :separator => ' / ' %>
+            </li>
+            <li class="breadcrumb-item active"><%=@parent.name%></li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <button class="btn btn-labeled btn-danger mb-2 swal-demo5" type="button">
+            <%= hidden_field_tag :d_parent, @parent.id %>
+            <span class="btn-label"><i class="fa fa-trash-alt" ></i></span>Delete
+          </button>
+          <%= link_to(edit_parent_path(@parent.id),class: 'btn btn-labeled btn-warning mb-2') do %>
+            <span class="btn-label"><i class="fa fa-pencil-alt"></i></span>Edit
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card card-default">
+            <div class="card-body bb text-center">
+              <div class="py-4">
+                <img class="img-fluid rounded-circle img-thumbnail thumb96" src="/assets/user/02.jpeg" alt="Contact">
+              </div>
+            </div>
+            <table class="table bb table-striped">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Address</strong>
+                  </td>
+                  <td><%= @parent.address%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>City</strong>
+                  </td>
+                  <td><%= @parent.city%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Country</strong>
+                  </td>
+                  <td><%= @parent.country%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Postcode</strong>
+                  </td>
+                  <td><%= @parent.postcode%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Mobile</strong>
+                  </td>
+                  <td><%= @parent.mobile%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Home Phone</strong>
+                  </td>
+                  <td><%= @parent.home_phone%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Email</strong>
+                  </td>
+                  <td><%= @parent.email%></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Map</strong>
+                  </td>
+                  <%if @parent.latitude.present? && @parent.longitude.present?%>
+                    <td><%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@parent.postcode}&zoom=16&size=600x300&maptype=roadmap&markers=color:green%7Clabel:P%7C#{@parent.latitude},#{@parent.longitude}&key=AIzaSyAZoiN-C9hunzDJaXKCp_y6EvcvRlxIn1I")%></td>
+                  <%else%>
+                    <td> NO MAP AVAILABLE</td>
+                  <%end%>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Created at</strong>
+                  </td>
+                  <td><%= @parent.created_at.strftime('%d %B,%Y')%></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-footer">
+              <% diff = (Time.now.to_i - @parent.updated_at.to_i) %>
+              <div class="text-sm text-muted">Last updated at <%= distance_of_time_in_words(diff).split("and")[0].chomp(', ') %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="mb-3 d-flex">
+            <div>
+              <button class="btn btn-sm btn-secondary" type="button" data-toggle="tooltip" data-title="Add New Student">
+              <em class="fa fa-user-plus"></em>
+              </button>
+              <button class="btn btn-sm btn-secondary" type="button" data-toggle="tooltip" data-title="Print Student List">
+              <em class="fa fa-print"></em>
+              </button>
+              <button class="btn btn-sm btn-secondary" type="button" data-toggle="tooltip" data-title="Log Payment">
+              <em class="fa fa-pound-sign"></em>
+              </button>
+              <button class="btn btn-sm btn-secondary" type="button" data-toggle="tooltip" data-title="Send SMS">
+              <em class="fa fa-mobile-alt"></em>
+              </button>
+            </div>
+            <div class="ml-auto"></div>
+          </div>
+          <div class="card b">
+            <div class="card-body">
+              <table class="table w-100 table-striped " id="datatable1">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Classroom</th>
+                    <th>Student Type</th>
+                    <th>Status</th>
+                    <th>fee</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @parent.students.each do |student|%>
+                    <tr>
+                      <td>
+                        <%= link_to "#{student.name}", student_path(student.id) %>
+                      </td>
+                      <td><%= student.classroom%></td>
+                      <td>
+                        <%if student.type_id.present? && student.status == "Enrolled"%>
+                          <%= Type.find(student.type_id).name %>
+                        <% end %>
+                        </td>
+                      <td>
+                        <%= student.status%>
+                      </td>
+                      <td>£<%= student.outstanding_fee%></td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                          <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                          <span class="sr-only">primary</span>
+                          </button>
+                          <div class="dropdown-menu" role="menu">
+                            <%= link_to 'View',student_path(student.id),class: "dropdown-item"%>
+                            <%= link_to 'Edit',edit_student_path(student.id),class: "dropdown-item"%>
+                            <%= hidden_field_tag :d_student, student.id%>
+                            <a href="JavaScript:void(0);" class= "dropdown-item swal-demo7">Delete</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+
+<script src="/assets/theme_js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="/assets/theme_js/datatables.net/jquery.dataTables.js"></script>
+<script src="/assets/theme_js/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/dataTables.buttons.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons-bs/buttons.bootstrap.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.colVis.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.flash.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.html5.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.print.js"></script>
+<script src="/assets/theme_js/datatables.net-keytable/dataTables.keyTable.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive/dataTables.responsive.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive-bs/responsive.bootstrap.js"></script>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>
+
+<style type="text/css">
+  #datatable1_wrapper table.dataTable thead > tr > th.sorting{
+    padding-right: 25px;
+  }
+</style>

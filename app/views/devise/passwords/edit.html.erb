@@ -1,0 +1,55 @@
+<div class="wrapper">
+  <div class="block-center mt-4 wd-xl">
+    <!-- START card-->
+    <div class="card card-flat">
+      <div class="card-header text-center bg-dark">
+        <a href="#">
+        <!-- <img class="block-center rounded" src="/assets/logo.png" alt="Image"> -->
+        <h4><%= APP_CONFIG['name']%></h4>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="text-center py-2">Change Password</p>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <%= f.hidden_field :reset_password_token %>
+          <div class="form-group">
+            <div class="input-group with-focus">
+              <%= f.password_field :password, autofocus: true, autocomplete: "off",class: "form-control border-right-0",id: "exampleInputEmail1",placeholder: "Enter Password" %>
+              <div class="input-group-append">
+                <span class="input-group-text text-muted bg-transparent border-left-0">
+                <em class="fa fa-lock"></em>
+                </span>
+              </div>
+            </div>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <% end %>
+          </div>
+          <div class="form-group">
+            <div class="input-group with-focus">
+              <%= f.password_field :password_confirmation, autocomplete: "off",class: "form-control border-right-0",id: "exampleInputPassword1",placeholder: "Confirm Password" %>
+              <div class="input-group-append">
+                <span class="input-group-text text-muted bg-transparent border-left-0">
+                <em class="fa fa-lock"></em>
+                </span>
+              </div>
+            </div>
+          </div>
+          <%= f.submit "Change my password",class: "btn btn-block btn-primary mt-3" %>
+        <%end %>
+        <!-- <p class="pt-3 text-center">Need to Signup?</p> -->
+        <%#= link_to "Register Now",new_user_registration_path,class: "btn btn-block btn-secondary" %>
+      </div>
+    </div>
+    <!-- END card-->
+    <div class="p-3 text-center">
+      <span class="mr-2">&copy;</span>
+      <span>2018</span>
+      <span class="mr-2">-</span>
+      <span>E-Maktab</span>
+      <br>
+      <span> Admin </span>
+    </div>
+  </div>
+</div>

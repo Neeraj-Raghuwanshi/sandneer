@@ -1,0 +1,26 @@
+
+<p>Dear <b><%= @parent.name %></b>,</p>
+
+<p>This email is a confirmation that your details have been registered on your system.</p>
+
+<p>
+  <p><b>Name:</b> <%= @parent.name %></p>
+  <p><b>Address:</b> <%= @parent.address %></p>
+  <p><b>Postcode:</b> <%= @parent.postcode %></p>
+  <p><b>Home Number:</b> <%= @parent.home_phone %></p>
+  <p><b>Mobile:</b> <%= @parent.mobile %></p>
+  <p><b>Email:</b> <%= @parent.email %></p>
+</p>
+
+<p>The following child(s) application was also made and registered in our system.</p>
+
+<ul>
+  <% @student.each do |student| %>
+
+  <li>Name: <%= student.first_name %></li>
+  <li>Last Name: <%= student.last_name %></li>
+  <li>DOB: <%= student.dob %></li>
+  <hr width=50% align="left">
+
+  <%end%>
+</ul>

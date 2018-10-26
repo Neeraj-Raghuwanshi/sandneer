@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="block-center mt-4 wd-xl">
+    <!-- START card-->
+    <div class="card card-flat">
+      <div class="card-header text-center bg-dark">
+        <a href="#">
+        <!-- <img class="block-center rounded" src="img/logo.png" alt="Image"> -->
+        <h4><%= APP_CONFIG['name']%></h4>
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="text-center py-2">PASSWORD RESET</p>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= devise_error_messages! %>
+          <p class="text-center">Fill with your mail to receive instructions on how to reset your password.</p>
+          <div class="form-group">
+            <label class="text-muted" for="resetInputEmail1">Email address</label>
+            <div class="input-group with-focus">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control border-right-0",id: "resetInputEmail1",placeholder: "Enter email" %>
+              <div class="input-group-append">
+                <span class="input-group-text text-muted bg-transparent border-left-0">
+                <em class="fa fa-envelope"></em>
+                </span>
+              </div>
+            </div>
+          </div>
+          <%= f.submit "Send me reset password instructions",class: "btn btn-danger btn-block" %>
+        <% end %>
+      </div>
+    </div>
+    <!-- END card-->
+    <div class="p-3 text-center">
+      <span class="mr-2">&copy;</span>
+      <span>2018</span>
+      <span class="mr-2">-</span>
+      <span>E-Maktab</span>
+      <br>
+      <span>Admin</span>
+    </div>
+  </div>
+</div>

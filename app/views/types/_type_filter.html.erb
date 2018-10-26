@@ -1,0 +1,94 @@
+<%= form_tag '/types' ,method: :get,remote: true do%>
+  <table class="table bb table-striped filter-table">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label"> Name </label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[name_contains]", options_for_select(type_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'name' ,params[:name],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Fee</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[fee_contains]", options_for_select(fee_filter),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'fee' ,params[:fee],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Payment Terms</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "payment_terms", options_for_select([nil]+payment_terms),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Students Count</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[students_count_contains]", options_for_select(fee_filter),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'students_count' ,params[:students_count],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= submit_tag 'Filter',class: "btn btn-sm btn-primary", id: "filter_type_list"%>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= link_to 'Clear filter', types_path,class: "btn btn-sm btn-warning", id: "type_clear-filter" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<style type="text/css">
+  .filter-table td{
+    padding: 5px;
+  }
+  .filter-table td .form-group{
+    margin-bottom: 0;
+  }
+  #type_clear-filter{
+    margin-left: -76px;
+  }
+</style>
+

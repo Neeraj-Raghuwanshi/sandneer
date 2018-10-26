@@ -1,0 +1,389 @@
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-keytable-bs/keyTable.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-responsive-bs/responsive.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          <%= @teacher.name %>
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <a href="/levels"><%= render_breadcrumbs :separator => ' / ' %></a>
+            </li>
+            <li class="breadcrumb-item active"><%= @teacher.name %></li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <button class="btn btn-labeled btn-danger mb-2 swal-demo9" type="button">
+            <%= hidden_field_tag :d_teacher, @teacher.id %>
+            <span class="btn-label"><i class="fa fa-trash-alt" ></i></span>Delete
+          </button>
+          <%= link_to(edit_teacher_path(@teacher.id),class: 'btn btn-labeled btn-warning mb-2') do %>
+            <span class="btn-label"><i class="fa fa-pencil-alt"></i></span>Edit
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card card-default">
+            <div class="card-body bb text-center">
+              <div class="py-4">
+                <img class="img-fluid rounded-circle img-thumbnail thumb96" src="/assets/user/02.jpeg" alt="Contact">
+              </div>
+            </div>
+            <table class="table bb">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Address</strong>
+                  </td>
+                  <td><%= @teacher.address %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>City</strong>
+                  </td>
+                  <td><%= @teacher.city %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Postcode</strong>
+                  </td>
+                  <td><%= @teacher.postcode %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Contact</strong>
+                  </td>
+                  <td><%= @teacher.contact %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Email</strong>
+                  </td>
+                  <td><%= @teacher.email %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Created at</strong>
+                  </td>
+                  <td><%= @teacher.created_at.strftime('%d %B,%Y')%></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-footer">
+              <% diff = (Time.now.to_i - @teacher.updated_at.to_i) %>
+              <div class="text-sm text-muted">Last updated at <%= distance_of_time_in_words(diff).split("and")[0].chomp(', ') %>
+              </div>
+            </div>
+          </div>
+          <!-- end Aside card-->
+        </div>
+        <div class="col-lg-8">
+          <div id="accordion">
+            <div class="card card-default mb-1">
+              <div class="card-header" id="headingOne">
+                <div class="d-flex justify-content-end">
+                  <div class="btn-group">
+                    <button class="btn btn-link" data-toggle="dropdown">
+                    <em class="fa fa-ellipsis-v fa-lg text-muted"></em>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right-forced animated fadeInLeft" role="menu">
+                      <a class="dropdown-item" href="#">
+                      <span>Send by message</span>
+                      </a>
+                      <a class="dropdown-item" href="#">
+                      <span>Share contact</span>
+                      </a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#emergencyModal1" href="#">
+                      <span>View Emergency Details</span>
+                      </a>
+                      <a class="dropdown-item" href="#">
+                      <span class="text-warning">Delete contact</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="mb-0">
+                  <a class="text-inherit" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="">Employment Details</a>
+                </h4>
+              </div>
+              <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body border-top">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <label class="col-form-label"> Contract Type:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.contract_type %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Employee Number:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.employee_number %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Start Date:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.start_date %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Leaving Date:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.leaving_date %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Job Title:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.job_title %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Nationality:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.nationality %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">NI Number:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.NI_number %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Salary:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.salary %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Working Hours:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.working_hours %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Marital Status:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.marital_status %>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card card-default mb-1">
+              <div class="card-header" id="headingTwo">
+                <h4 class="mb-0">
+                  <a class="text-inherit collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" href="">Registration Details</a>
+                </h4>
+              </div> -->
+              <!-- <div class="collapse show" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body border-top">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Name:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">SEN Requirements:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">SEN Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div> -->
+            </div>
+            <div class="card card-default mb-1">
+              <div class="card-header" id="headingTwo">
+                <h4 class="mb-0">
+                  <a class="text-inherit collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" href="">Medical Details</a>
+                </h4>
+              </div>
+              <div class="collapse show" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body border-top">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Doctors Name:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.doctors_name %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <% if @teacher.special_needs == true %>
+                              <div>Yes</div>
+                            <%else%>
+                              <div>No</div>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.specialneeds_notes%>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Is Disable:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <% if @teacher.is_disabled == true %>
+                              <div>Yes</div>
+                            <% else %>
+                              <div>No</div>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Disabilities Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @teacher.disabilities_note %>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="/assets/theme_js/datatables.net/jquery.dataTables.js"></script>
+<script src="/assets/theme_js/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/dataTables.buttons.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons-bs/buttons.bootstrap.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.colVis.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.flash.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.html5.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.print.js"></script>
+<script src="/assets/theme_js/datatables.net-keytable/dataTables.keyTable.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive/dataTables.responsive.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive-bs/responsive.bootstrap.js"></script>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<div class="modal fade" id="emergencyModal1" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+  <%= render 'model_popup' %>
+</div>
+<script src="/assets/theme_js/js/app.js"></script>
+
+<style type="text/css">
+  #datatable1_wrapper table.dataTable thead > tr > th.sorting{
+    padding-right: 25px;
+  }
+</style>

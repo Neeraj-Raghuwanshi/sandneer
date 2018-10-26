@@ -1,0 +1,150 @@
+<%= form_tag '/parents' ,method: :get,remote: true do%>
+  <table class="table bb table-striped filter-table">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Name</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[name_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'name' ,params[:name],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Postcode</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[postcode_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'postcode' ,params[:postcode],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Mobile</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[mobile_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'mobile' ,params[:mobile],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Home Phone</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[home_phone_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'home_phone' ,params[:home_phone],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Email</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[email_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'email' ,params[:email],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">City</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[city_contains]", options_for_select(filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'city' ,params[:city],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Students Count</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[students_count_contains]", options_for_select(students_count_filter),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'students_count' ,params[:students_count],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= submit_tag 'Filter',class: "btn btn-sm btn-primary", id: "filter_parent_list"%>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= link_to 'Clear filter', parents_path,class: "btn btn-sm btn-warning", id: "clear-filter" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<style type="text/css">
+  .filter-table td{
+    padding: 5px;
+  }
+  .filter-table td .form-group{
+    margin-bottom: 0;
+  }
+  #clear-filter{
+    margin-left: -76px;
+  }
+</style>
+

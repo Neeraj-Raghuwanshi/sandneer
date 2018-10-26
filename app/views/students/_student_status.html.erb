@@ -1,0 +1,7 @@
+<%= form_tag '/students' ,method: :get,remote: true do%>
+  <%= submit_tag "All",class: "mb-1 btn btn-outline-primary active", id: "primary" %>
+  <%= submit_tag "Enrolled",class: "mb-1 btn btn-outline-success", id: "success" %>
+  <%= submit_tag "Applied",class: "mb-1 btn btn-outline-warning", id: "warning" %>
+  <%= submit_tag "Shortlist",class: "mb-1 btn btn-outline-info" %>
+  <%= submit_tag "Waitlist",class: "mb-1 btn btn-outline-danger" %>
+<% end %>

@@ -1,0 +1,436 @@
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-keytable-bs/keyTable.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/datatables.net-responsive-bs/responsive.bootstrap.css">
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          <%= @student.name %>
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <%= render_breadcrumbs :separator => ' / '%>
+            </li>
+            <li class="breadcrumb-item active"><%=@student.name%></li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <button class="btn btn-labeled btn-danger mb-2 swal-demo7" type="button">
+            <%= hidden_field_tag :d_student, @student.id %>
+            <span class="btn-label"><i class="fa fa-trash-alt" ></i></span>Delete
+          </button>
+          <%= link_to(edit_student_path(@student.id),class: 'btn btn-labeled btn-warning mb-2') do %>
+            <span class="btn-label"><i class="fa fa-pencil-alt"></i></span>Edit
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card card-default">
+            <div class="card-body bb text-center">
+              <div class="py-4">
+                <img class="img-fluid rounded-circle img-thumbnail thumb96" src="/assets/user/02.jpg" alt="Contact">
+              </div>
+              <div class="text-center">
+                <% if @student.status == "Enrolled" %>
+                  <td><button class="mb-1 btn btn-success" type="button"><%= @student.status %></button></td>
+                <% elsif @student.status == "Applied" %>
+                <td><button class="mb-1 btn btn-warning" type="button"><%= @student.status %></button></td>
+                <% elsif @student.status == "Shortlist" %>
+                <td><button class="mb-1 btn btn-info" type="button"><%= @student.status %></button></td>
+                <% elsif @student.status == "Waitlist" %>
+                 <td><button class="mb-1 btn btn-danger" type="button"><%= @student.status %></button></td>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body">
+              <%= render 'sibling_details'%>
+            </div>
+            <table class="table bb">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Address</strong>
+                  </td>
+                  <td><%= @student.address %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Postcode</strong>
+                  </td>
+                  <td><%= @student.postcode %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Home Phone</strong>
+                  </td>
+                  <td><%= @student.home_phone %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Mobile</strong>
+                  </td>
+                  <td><%= @student.mobile %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Email</strong>
+                  </td>
+                  <td><%= @student.email %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Gender</strong>
+                  </td>
+                  <td><%= @student.gender %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>D.O.B</strong>
+                  </td>
+                  <td><%= @student.dob %></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Created at</strong>
+                  </td>
+                  <td><%= @student.created_at.strftime('%d %B,%Y')%></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-body">
+              </p>
+              <p>
+                <em class="far fa-comment fa-fw"></em>
+                <span>(9)</span>
+              </p>
+              <div class="media mb-2">
+                <img class="mr-2 rounded-circle thumb32" src="/assets/user/02.jpg" alt="Image">
+                <div class="media-body">
+                  <div>
+                    <p class="m-0">
+                      <a href="#">
+                      <strong>Admin</strong>
+                      </a>
+                    </p>
+                    <p class="m-0 text-muted">He keeps coming in late to maktab, please speak to his parent!</p>
+                    <small class="ml-auto text-muted"><a href="">Delete</a></small>
+                  </div>
+                </div>
+                <small class="ml-auto text-muted">12m ago</small>
+              </div>
+              <div class="media mb-2">
+                <img class="mr-2 rounded-circle thumb32" src="/assets/user/02.jpg" alt="Image">
+                <div class="media-body">
+                  <div>
+                    <p class="m-0">
+                      <a href="#">
+                      <strong>Wahmad</strong>
+                      </a>
+                    </p>
+                    <p class="m-0 text-muted">Excellento shot!</p>
+                    <small class="ml-auto text-muted"><a href="">Delete</a></small>
+                  </div>
+                </div>
+                <small class="ml-auto text-muted">30m ago</small>
+              </div>
+              <div class="media mb-2">
+                <img class="mr-2 rounded-circle thumb32" src="/assets/user/02.jpg" alt="Image">
+                <div class="media-body">
+                  <div>
+                    <p class="m-0">
+                      <a href="#">
+                      <strong>Admin</strong>
+                      </a>
+                    </p>
+                    <p class="m-0 text-muted">Nice shot!</p>
+                    <small class="ml-auto text-muted"><a href="">Delete</a></small>
+                  </div>
+                </div>
+                <small class="ml-auto text-muted">30m ago</small>
+              </div>
+            </div>
+            <div class="card-body bg-gray-lighter">
+              <a class="link-unstyled" href="#">Load (6) more comments</a>
+            </div>
+            <div class="card-body">
+              <form class="mt-2" method="post" action="#">
+                <textarea class="form-control no-resize" placeholder="Comment..." rows="1"></textarea>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div id="accordion">
+            <div class="card card-default mb-1">
+              <div class="card-header" id="headingThree">
+                <div class="d-flex justify-content-end">
+                  <div class="btn-group">
+                    <button class="btn btn-link" data-toggle="dropdown">
+                    <em class="fa fa-ellipsis-v fa-lg text-muted"></em>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right-forced animated fadeInLeft" role="menu">
+                      <a class="dropdown-item" data-toggle="modal" data-target="#rewardModal" href="#">
+                      <span>Give Reward</span>
+                      </a>
+                      <a class="dropdown-item" href="#">
+                      <span>Print Details</span>
+                      </a>
+                      <a class="dropdown-item" href="#">
+                      <span>Make Payment</span>
+                      </a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#emergencyModal" href="#">
+                      <span>View Emergency Details</span>
+                      </a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#attndModal" href="#">
+                      <span class="text-warning">Log Authrorised Absent</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="mb-0">
+                  <a class="text-inherit" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" href="">Registration Details</a>
+                </h4>
+              </div>
+              <div class="collapse show" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body border-top">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Classroom:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%=  @student.levels.collect{|l| l.name}.join(',') %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Type:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%#=  @student.levels.collect{|l| l.classroom_type}.join(',') %>
+                            <%if @student.type_id.present? && @student.status == "Enrolled"%>
+                              <%= Type.find(@student.type_id).name %>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Start Date:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.start_date %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">End Date:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.end_date %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Ethnicity Group:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.ethnicity_group %>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card card-default mb-1">
+              <div class="card-header" id="headingTwo">
+                <h4 class="mb-0">
+                  <a class="text-inherit collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" href="">Medical Details</a>
+                </h4>
+              </div>
+              <div class="collapse show" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body border-top">
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Doctors Name:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.doctors_name %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <% if @student.is_disabled == true %>
+                              <div>Yes</div>
+                            <% else %>
+                              <div>No</div>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">Special Needs Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.disabilities_note %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">SEN Requirements:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <% if @student.special_needs == true %>
+                              <div>Yes</div>
+                            <% else %>
+                              <div>No</div>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <label class="col-form-label">SEN Notes:</label>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <%= @student.specialneeds_notes%>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card card-default mb-1">
+              <div class="card-header" id="headingPayment">
+                <h4 class="mb-0">
+                  <a class="text-inherit collapsed" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="false" aria-controls="collapsePayment" href="">Payment Details</a>
+                </h4>
+              </div>
+              <div class="collapse show" id="collapsePayment" aria-labelledby="headingPayment" data-parent="#accordion">
+                <div class="card-header"><b>Outstanding Balance: £200</b></div>
+                <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Payment ID</th>
+                      <th>Amount Paid</th>
+                      <th>For</th>
+                      <th>Type</th>
+                      <th>Paid on</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>18</td>
+                      <td>
+                        £50.00
+                      </td>
+                      <td>
+                        Fees
+                      </td>
+                      <td>
+                        Cash
+                      </td>
+                      <td>
+                        24-09-2018
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                          <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                          <span class="sr-only">primary</span>
+                          </button>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">View Payment</a>
+                            <a class="dropdown-item" href="#">Edit Payment</a>
+                            <a class="dropdown-item" href="#">Delete Payment</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>17</td>
+                      <td>
+                        £50.00
+                      </td>
+                      <td>
+                        Fees
+                      </td>
+                      <td>
+                        Cash
+                      </td>
+                      <td>
+                        24-09-2018
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                          <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                          <span class="sr-only">primary</span>
+                          </button>
+                          <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="#">View Payment</a>
+                            <a class="dropdown-item" href="#">Edit Payment</a>
+                            <a class="dropdown-item" href="#">Delete Payment</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="/assets/theme_js/datatables.net/jquery.dataTables.js"></script>
+<script src="/assets/theme_js/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/dataTables.buttons.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons-bs/buttons.bootstrap.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.colVis.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.flash.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.html5.js"></script>
+<script src="/assets/theme_js/datatables.net-buttons/buttons.print.js"></script>
+<script src="/assets/theme_js/datatables.net-keytable/dataTables.keyTable.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive/dataTables.responsive.js"></script>
+<script src="/assets/theme_js/datatables.net-responsive-bs/responsive.bootstrap.js"></script>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="emergencyModalLabel" aria-hidden="true">
+  <%= render 'model_popup' %>
+</div>
+<script src="/assets/theme_js/js/app.js"></script>

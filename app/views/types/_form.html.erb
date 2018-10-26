@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Classroom Form</div>
+        <div class="card-body">
+          <%= form_for @type do |f| %>
+            <%= form_group_for f, :name, label: false  do %>
+              <div class="form-group">
+                <label>Name*</label>
+                <%= f.text_field :name ,class: "form-control", placeholder: "Please enter name"%>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Description</label>
+              <%= f.text_area :description ,class: "form-control", placeholder: "Please enter address"%>
+            </div>
+            <%= form_group_for f, :fee, label: false  do %>
+              <div class="form-group">
+                <label>Fee*</label>
+                <%= f.text_field :fee ,class: "form-control", placeholder: "Please enter fee"%>
+              </div>
+            <% end %>
+            <%= form_group_for f, :payment_terms, label: false  do %>
+              <div class="form-group">
+                <label>Payment Terms*</label>
+                <%= f.select :payment_terms ,options_for_select(payment_terms, selected: f.object.payment_terms),{prompt: 'Select Payment terms'}, class: "chosen-select form-control" %>
+              </div>
+            <% end %>
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <%= link_to 'Cancel', types_path,class: "btn btn-sm btn-warning" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

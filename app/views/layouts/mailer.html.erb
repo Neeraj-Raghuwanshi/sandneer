@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <h1>Assalamu’alaikum warahmatullahi wabarakatuh,</h1>
+
+    <%= yield %>
+--
+
+<p>---------------------------</p>
+<p><b>Jazak'Allah Khair</p></b>
+  <p><i><%= APP_CONFIG['name'] %>,</i></p>
+  <p><i><%= APP_CONFIG['address'] %>,</i></p>
+  <p><i><%= APP_CONFIG['postcode'] %>,</i></p>
+  <p><i>Tel: <%= APP_CONFIG['tel'] %> | email: <%= APP_CONFIG['fromemail'] %></i></p>
+</p>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+  .pagination-link .pagination{
+    padding: 10px;
+    float: right;
+  }
+.pagination-link .pagination .current{
+  background-color: #5d9cec;
+  color: #fff;
+  padding: 5px;
+  border: 1px solid #5d9cec;
+  min-width: 30px;
+  text-align: center;
+}
+.dataTable td{
+  padding: 0.5rem;
+}
+.pagination-link .pagination a, .pagination-link .pagination span {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dee2e6;
+  color: #999;
+  margin: 0;
+  min-width: 32px;
+  text-align: center;
+  line-height: normal;
+  margin-left: -1px;
+}
+/*.pagination-link .pagination a:first-child{
+  border-left: none;
+}*/
+.previous_page::after{
+  content: "«";
+  color: #5d9cec;
+  font-size: 16px;
+  position: absolute;
+  z-index: 999;
+  /*font-family: 'simple-line-icons';*/
+  left: 0;
+  right: 0;
+  top: 7px;
+}
+.next_page::after{
+  content: "»";
+  color: #5d9cec;
+  font-size: 16px;
+  position: absolute;
+  z-index: 999;
+  /*font-family: 'simple-line-icons';*/
+  left: 0;
+  right: 0;
+  top: 7px;
+}
+.previous_page, .next_page{
+  font-size: 0;
+  position: relative;
+}
+.no_record_found{
+  text-align: center;
+}
+/* For Desktop View*/
+.hide-on-desktop, .mobile-view{
+  display: none;
+}
+.mobile-view{
+  margin-bottom: 15px;
+  margin-left: 15px;
+}
+
+.pagination-link .pagination a:last-child{
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+.pagination-link .pagination a:first-child, .pagination-link .pagination span:first-child{
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+/*For Mobile View*/
+@media screen and (max-width: 767px) {
+ .hide-on-desktop, .mobile-view{
+    display: block;
+  }
+  .hide-on-mobile, .desktop-view{
+    display: none;
+  }
+}

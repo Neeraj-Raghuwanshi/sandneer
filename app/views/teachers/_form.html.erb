@@ -1,0 +1,158 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Teacher Form</div>
+      <div class="card-body">
+        <%= form_for @teacher do |f|%>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Teacher Details</h6></div>
+          <div class="form-section">
+            <%= form_group_for f, :name, label: false  do %>
+              <div class="form-group">
+                <label>Name*</label>
+                <%= f.text_field :name ,class: "form-control", placeholder: "Please enter name"%>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Address</label>
+              <%= f.text_field :address,class: "form-control", placeholder: "Please enter address" %>
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <%= f.text_field :city,class: "form-control", placeholder: "Please enter city" %>
+            </div>
+            <div class="form-group">
+              <label>Postcode</label>
+              <%= f.text_field :postcode,class: "form-control", placeholder: "Please enter postcode" %>
+            </div>
+            <%= form_group_for f, :contact, label: false  do %>
+              <div class="form-group">
+                <label>Contact*</label>
+                <%= f.text_field :contact,class: "form-control", placeholder: "Please enter contact number" %>
+              </div>
+            <% end %>
+            <%= form_group_for f, :email, label: false  do %>
+              <div class="form-group">
+                <label>Email*</label>
+                <%= f.text_field :email,class: "form-control", placeholder: "Please enter email" %>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <label>Date Of Birth</label>
+              <%= f.date_field :dob,class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <%= f.select :gender,([["Female","female"], ["Male", "male"]]),{prompt: 'Select Gender'}, { :class => 'form-control' } %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :crb_checked,class: "form-check-input"  %>
+              <label class="form-check-label">DBS checked</label>
+            </div>
+            <div class="form-group">
+              <label>If yes, please specify</label>
+              <%= f.text_area :crb_checked_on,class: "form-control", placeholder: "PleaseEnter the date DBS checked on" %>
+            </div>
+            <div class="form-group">
+              <label>DBS Ref</label>
+              <%= f.text_field :dbs_ref ,class: "form-control", placeholder: "Please enter DBS ref number"%>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Medical Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Doctor's Name</label>
+              <%= f.text_field :doctors_name,class: "form-control", placeholder: "Please enter name of teacher GP" %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :is_disabled,class: "form-check-input"  %>
+              <label class="form-check-label">Does the teacher have Disabilities?</label>
+            </div>
+            <div class="form-group">
+              <label>If yes, please specify</label>
+              <%= f.text_area :disabilities_note,class: "form-control", placeholder: "Please enter disabilities note here" %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :special_needs,class: "form-check-input"  %>
+              <label class="form-check-label">Does the teacher have any Special teaching/medical needs?</label>
+            </div>
+            <div class="form-group">
+              <label>If yes, please specify</label>
+              <%= f.text_area :specialneeds_notes,class: "form-control", placeholder: "Please enter specialneeds note here" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Emergency Contact Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Emergency number 1</label>
+              <%= f.text_field :emergencyno_1,class: "form-control", placeholder: "Please enter emergency number 1" %>
+            </div>
+            <div class="form-group">
+              <label>Emergency number 2</label>
+              <%= f.text_field :emergencyno_2,class: "form-control", placeholder: "Please enter emergency number 2" %>
+            </div>
+            <div class="form-group">
+              <label>Emergency number 3</label>
+              <%= f.text_field :emergencyno_3,class: "form-control", placeholder: "Please enter emergency number 3" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Employment Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Type of contract</label>
+              <%= f.select :contract_type,([["Full Time","full time"], ["Part time", "part time"], ["Fixed-term", "fixed-term"], ["Zero hours", "zero hours"]]),{prompt: 'Select contract type'}, { :class => 'form-control' } %>
+            </div>
+            <div class="form-group">
+              <label>Employee Number</label>
+              <%= f.text_field :employee_number,class: "form-control", placeholder: "Please enter employee number" %>
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <%= f.date_field :start_date,class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label>Leaving Date</label>
+              <%= f.date_field :leaving_date,class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label>Job Title</label>
+              <%= f.text_field :job_title,class: "form-control", placeholder: "Please enter job titile e.g. Arabic Teacher" %>
+            </div>
+            <div class="form-group">
+              <label>Nationality</label>
+              <%= f.text_field :nationality,class: "form-control", placeholder: "Please enter nationality" %>
+            </div>
+            <div class="form-group">
+              <label>Ni Number</label>
+              <%= f.text_field :NI_number,class: "form-control", placeholder: "Please enter national insurance number" %>
+            </div>
+            <div class="form-group">
+              <label>Salary</label>
+              <%= f.number_field :salary,class: "form-control", placeholder: "Please enter employee yearly salary e.g. 15000" %>
+            </div>
+            <div class="form-group">
+              <label>Working Hours</label>
+              <%= f.number_field :working_hours,class: "form-control", placeholder: "Please enter weekly working hours" %>
+            </div>
+            <div class="form-group">
+              <label>Marital Status</label>
+              <%= f.text_field :marital_status,class: "form-control", placeholder: "Please enter marital status e.g. Married, Single" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <% if params[:action] == 'edit' %>
+              <%= link_to 'Cancel', teacher_path(@teacher),class: "btn btn-sm btn-warning" %>
+            <% else %>
+              <%= link_to 'Cancel', teachers_path,class: "btn btn-sm btn-warning" %>
+            <% end %>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .form-section{
+    padding: 0 25px;
+  }
+</style>

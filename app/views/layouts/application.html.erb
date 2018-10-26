@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Maktab</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false%>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+    <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="Bootstrap Admin App + jQuery">
+
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Maktab - Admin Template</title>
+
+    <!-- =============== BOOTSTRAP STYLES ===============-->
+    <link rel="stylesheet" href="/assets/theme_css/bootstrap.css" id="bscss">
+    <!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="/assets/theme_css/app.css" id="maincss">
+    <!-- <script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script> -->
+  </head>
+  <body>
+   <%if flash[:notice]  %>
+      <p class="alert alert-success"><%= notice %></p>
+    <%end%>
+    <%if flash[:alert]  %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <%end%>
+    <% if user_signed_in? %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
+<style type="text/css">
+  #titlebar_right {
+    text-align: right;
+  }
+</style>

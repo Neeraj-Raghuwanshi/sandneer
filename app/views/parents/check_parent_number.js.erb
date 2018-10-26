@@ -1,0 +1,5 @@
+<% if @available %>
+  $(".inline-hints").replaceWith('<p class="inline-hints" style="color:red;">Number already taken! You can not use this number. Check if this parent is already registered in the system.</p>')
+<% else %>
+  $(".inline-hints").replaceWith('<p class="inline-hints" style="color:green;">Alhamdulillah you can use this number :)</p>')
+<% end %>

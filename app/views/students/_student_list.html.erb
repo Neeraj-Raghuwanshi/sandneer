@@ -1,0 +1,73 @@
+<% unless @students.blank? %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover" id="table-ext-3">
+      <thead>
+        <th data-check-all>
+          <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All">
+            <label>
+                <input type="checkbox" name = student_arr1[] value="<%= @students.ids %>" class="check_box_selection" id="student_main_checkbox" >
+              <span class="fa fa-check"></span>
+            </label>
+          </div>
+        </th>
+        <th>Name</th>
+        <th>Classroom</th>
+        <th>Student Type</th>
+        <th>Status</th>
+        <th>fee</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <% @students.order('created_at DESC').each do |student|%>
+          <tr>
+            <td>
+              <div class="checkbox c-checkbox">
+                <label>
+                  <input type="checkbox" name = student_arr[] value="<%= student.id %>" id ="student_check_box">
+                  <span class="fa fa-check"></span>
+                </label>
+              </div>
+            </td>
+            <td><%=link_to "#{student.name}",student_path(student.id)%></td>
+            <td>
+              <%=  student.levels.collect{|l| l.name}.join(',') %>
+            </td>
+            <td><% if student.type_id.present? && student.status == "Enrolled" %>
+              <%#=  student.levels.collect{|l| l.name}.join(',') %>
+              <%= Type.find(student.type_id).name %>
+              <% end %></td>
+            <% if student.status == "Enrolled" %>
+              <td><button class="mb-1 btn btn-outline-success" type="button"><%= student.status %></button></td>
+            <% elsif student.status == "Applied" %>
+              <td><button class="mb-1 btn btn-outline-warning" type="button"><%= student.status %></button></td>
+            <% elsif student.status == "Shortlist" %>
+              <td><button class="mb-1 btn btn-outline-info" type="button"><%= student.status %></button></td>
+            <% elsif student.status == "Waitlist" %>
+               <td><button class="mb-1 btn btn-outline-danger" type="button"><%= student.status %></button></td>
+            <% end %>
+            <td>£<%= student.outstanding_fee%></td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                <span class="sr-only">primary</span>
+                </button>
+                <div class="dropdown-menu animated" role="menu">
+                  <%= link_to 'View',student_path(student.id),class: "dropdown-item"%>
+                  <%= link_to 'Edit',edit_student_path(student.id),class: "dropdown-item"%>
+                  <%= hidden_field_tag :d_student, student.id %>
+                  <a href="JavaScript:void(0);" class= "dropdown-item swal-demo7">Delete</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination-link">
+    <%= js_will_paginate @students %>
+  </div>
+<% else %>
+  <p class="no_record_found">No Student Found</p>
+<% end %>

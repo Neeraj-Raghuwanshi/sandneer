@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <!-- Main section-->
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          Types
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <a href="/types"><%= render_breadcrumbs :separator => ' / ' %></a>
+            </li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <%= link_to(new_type_path,class: 'btn btn-labeled btn-success mb-2') do %>
+          <span class="btn-label"><i class="fa fa-plus"></i></span>New Type
+          <% end %>
+        </div>
+      </div>
+      <!-- START card-->
+      <div class="row">
+        <div class="col-xl-2">
+          <div class="ml-auto">
+            <div class="input-group float-right">
+              <div class="desktop-view">
+                <select class="custom-select" id="type_batch" disabled = "true">
+                  <option value="0">Bulk action</option>
+                  <option value="2">Delete</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xl-4 hide-on-desktop">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'type_filter'%>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-view">
+          <select class="custom-select" id="type_batch" disabled = "true">
+            <option value="0">Bulk action</option>
+            <option value="2">Delete</option>
+          </select>
+        </div>
+        <div class="col-xl-8">
+          <div class="card card-default">
+            <div id="type_list_table">
+              <%= render 'type_list'%>
+           </div>
+          </div>
+        </div>
+        <div class="col-xl-4 hide-on-mobile">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'type_filter'%>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<!-- Email Modal-->
+<!-- <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="emailModalLabel">Send Email</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">Subject</label>
+              <div class="col-xl-8">
+                <input class="form-control" type="text" placeholder="Subject">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">Message</label>
+              <div class="col-xl-8">
+                <textarea class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label"><em class="fa fa-info-circle"></em></label>
+              <div class="col-xl-8">
+                <p> An email will be sent to the parents of the students in this classroom.</p>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer card-footer">
+        <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button">Send</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <script type="text/javascript">
+  $( document ).ready(function() {
+   $( "#inputGroupSelect01" ).change(function() {
+     var actions = this.value;
+     // alert(actions);
+     if(actions == 1)
+     $('#emailModal').modal('show')
+   });
+  });
+</script> -->
+<!-- =============== APP SCRIPTS ===============-->
+<script src="/assets/theme_js/js/app.js"></script>
+
+<script>
+  $(document).on('click','#type_main_checkbox',function(){
+    if($(this).is(':checked')){
+      $('#type_batch').prop('disabled', false)
+    }else {
+      $('#type_batch').prop('disabled', true)
+    }
+
+  })
+  $(document).on('click','#type_check_box',function(){
+    if($(this).is(':checked')){
+      $('#type_batch').prop('disabled', false)
+    }else {
+      $('#type_batch').prop('disabled', true)
+    }
+  })
+</script>

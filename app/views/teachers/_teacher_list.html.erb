@@ -1,0 +1,65 @@
+<% unless @teachers.blank? %>
+  <table class="table w-100 table-striped " id="datatable1">
+    <thead>
+      <tr>
+      <th data-check-all>
+        <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All" >
+          <label>
+          <input type="checkbox" name = parent_arr1[] value="<%= @teachers.ids %>" class="check_box_selection" id="teacher_main_checkbox" >
+          <span class="fa fa-check"></span>
+          </label>
+        </div>
+        </th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teachers.each do |teacher|%>
+        <tr>
+          <td>
+            <div class="checkbox c-checkbox table-check">
+              <label>
+              <input type="checkbox" name = teacher_arr[] value="<%= teacher.id %>" id="teacher_check_selection">
+              <span class="fa fa-check"></span>
+              </label>
+            </div>
+          </td>
+          <td><%=link_to "#{teacher.name}",teacher_path(teacher.id)%></td>
+          <td><%= teacher.contact %></td>
+          <td><%= teacher.email %></td>
+          <td><%= teacher.gender%></td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+              <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+              <span class="sr-only">primary</span>
+              </button>
+              <div class="dropdown-menu" role="menu">
+                <%= link_to 'View',teacher_path(teacher.id),class: "dropdown-item"%>
+                <%= link_to 'Edit',edit_teacher_path(teacher.id),class: "dropdown-item"%>
+                <%= hidden_field_tag :d_teacher, teacher.id%>
+                <a href="JavaScript:void(0);" class= "dropdown-item swal-demo9">Delete</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<% else %>
+  <p class="no_record_found">No Teacher Found</p>
+<% end %>
+<!-- <div class="pagination-link">
+  <%#= will_paginate @teachers %>
+</div> -->
+
+<style type="text/css">
+  .table .checkbox.table-check {
+    width: auto;
+    margin-left: 0;
+  }
+</style>

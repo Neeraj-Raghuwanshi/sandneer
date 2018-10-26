@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Classroom Form</div>
+        <div class="card-body">
+          <%= form_for @level do |f| %>
+            <%= form_group_for f, :name, label: false  do %>
+              <div class="form-group">
+                <label>Name*</label>
+                <%= f.text_field :name ,class: "form-control", placeholder: "Enter name"%>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Description</label>
+              <%= f.text_area :description ,class: "form-control", placeholder: "Enter address"%>
+            </div>
+            <div class="form-group">
+              <label>Teacher</label>
+              <%= f.select :teacher ,Teacher.pluck(:name,:id),{prompt: 'Select Teacher'} ,class: "form-control"%>
+            </div>
+            <%= form_group_for f, :classroom_type, label: false  do %>
+              <div class="form-group">
+                <label>Classroom Type*</label>
+                <%= f.select :classroom_type ,["weekdays","weekend"],{prompt: 'Select Classroom Type'} ,class: "form-control", id: "level_classroom_type"%>
+              </div>
+            <% end %>
+            <%= form_group_for f, :days, label: false  do %>
+              <div class="form-group">
+                <label>Days*</label>
+                <div class="form-check">
+                  <% Date::DAYNAMES.each do |day|%>
+                    <%= f.check_box :days, {multiple: true}, day, false %>
+                    <label><%= day%></label>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <%= link_to 'Cancel', level_path,class: "btn btn-sm btn-warning" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).on('change', '#level_classroom_type', function(ev) {
+    if ($(ev.target).val() === 'weekdays') {
+      $('#level_days_monday')[0].checked = true
+      $('#level_days_tuesday')[0].checked = true
+      $('#level_days_wednesday')[0].checked = true
+      $('#level_days_thursday')[0].checked = true
+      $('#level_days_friday')[0].checked = true
+      $('#level_days_sunday')[0].checked = false
+      $('#level_days_saturday')[0].checked = false
+    }
+    if ($(ev.target).val() === 'weekend') {
+      $('#level_days_sunday')[0].checked = true
+      $('#level_days_saturday')[0].checked = true
+      $('#level_days_monday')[0].checked = false
+      $('#level_days_tuesday')[0].checked = false
+      $('#level_days_wednesday')[0].checked = false
+      $('#level_days_thursday')[0].checked = false
+      $('#level_days_friday')[0].checked = false
+    }
+  });
+</script>

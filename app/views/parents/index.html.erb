@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+
+      <div class="content-heading">
+        <div>
+          Parents
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item active">
+              <a href="/parents"><%= render_breadcrumbs :separator => ' / ' %></a>
+            </li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <%= link_to(new_parent_path,class: 'btn btn-labeled btn-success mb-2') do %>
+              <span class="btn-label"><i class="fa fa-plus"></i></span>New Parent
+          <% end %>
+          <a class="btn btn-labeled btn-primary mb-2" href="import.html"><span class="btn-label"><i class="fa fa-upload"></i></span>Import Parents</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-2">
+          <div class="ml-auto">
+            <div class="input-group float-right">
+              <!-- <select class="custom-select" id="batch_action_kind" disabled>
+                <option value="0">Email Selected</option>
+                <option value="1">Sms Selected</option>
+                <option value="2">Give Permission</option>
+                <option value="3">Delete Selected</option>
+              </select> -->
+              <div class="desktop-view">
+                <%= select_tag "Batch Action", options_for_select(batch_action_name),class: "custom-select",id: "batch_action_kind", disabled: true %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-xl-4 hide-on-desktop">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'filter_table'%>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-view">
+          <%= select_tag "Batch Action", options_for_select(batch_action_name),class: "custom-select",id: "batch_action_kind", disabled: true %>
+        </div>
+        <div class="col-xl-8">
+          <div class="card card-default">
+            <div id = "parent_filter_table">
+              <%= render 'filter_parent_list'%>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 hide-on-mobile">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'filter_table'%>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+  // var batch_arr = new Array();
+  $(document).on('click','#main_checkbox',function(){
+    if($(this).is(':checked')){
+      $('#batch_action_kind').prop('disabled', false)
+    }else {
+      $('#batch_action_kind').prop('disabled', true)
+    }
+
+  })
+  $(document).on('click','#check_box_selection',function(){
+    if($(this).is(':checked')){
+      $('#batch_action_kind').prop('disabled', false)
+    }else {
+      $('#batch_action_kind').prop('disabled', true)
+    }
+  })
+
+  // $(document).on('change','#batch_action_kind',function(){
+  //   var batch_action = this.value
+  //   $.ajax({
+  //     type: "get",
+  //     url: "/batch_action_parent",
+  //     data:{batch_arr,batch_action}
+  //   })
+  // })
+
+</script>

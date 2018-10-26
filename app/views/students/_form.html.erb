@@ -1,0 +1,256 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Student Form</div>
+      <div class="card-body">
+        <%= form_for @student do |f|%>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Details</h6></div>
+          <div class="form-section">
+            <%= form_group_for f, :first_name, label: false  do %>
+              <div class="form-group">
+                <label>First Name*</label>
+                <%= f.text_field :first_name ,class: "form-control", placeholder: "Please enter first name"%>
+              </div>
+            <%end%>
+            <%= form_group_for f, :last_name, label: false  do %>
+              <div class="form-group">
+                <label>Last Name*</label>
+                <%= f.text_field :last_name ,class: "form-control", placeholder: "Please enter last name"%>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Address</label>
+              <%= f.text_field :address,class: "form-control", placeholder: "Please enter address" %>
+            </div>
+            <div class="form-group">
+              <label>Postcode</label>
+              <%= f.text_field :postcode,class: "form-control", placeholder: "Please enter postcode" %>
+            </div>
+            <div class="form-group">
+              <label>Home Phone</label>
+              <%= f.text_field :home_phone,class: "form-control", placeholder: "Please enter home phone" %>
+            </div>
+            <div class="form-group">
+              <label>Mobile</label>
+              <%= f.text_field :mobile,class: "form-control", placeholder: "Please enter mobile number" %>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+             <%= f.text_field :email,class: "form-control", placeholder: "Please enter email" %>
+            </div>
+            <%= form_group_for f, :gender, label: false  do %>
+              <div class="form-group">
+                <label>Gender*</label>
+                <%= f.select :gender,([["Female","female"], ["Male", "male"]]),{prompt: 'Select Gender'}, { :class => 'form-control' } %>
+              </div>
+            <%end%>
+            <%= form_group_for f, :dob, label: false  do %>
+              <div class="form-group">
+                <label>Date Of Birth*</label>
+                <%= f.date_field :dob,class: "form-control" %>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Ethnicity Group</label>
+              <%= f.select :ethnicity_group, options_for_select(ethnicity_group, selected: f.object.ethnicity_group),{}, class: "chosen-select form-control" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Registration Details</h6></div>
+          <div class="form-section">
+            <%= form_group_for f, :status, label: false  do %>
+              <div class="form-group">
+                <label>Status*</label>
+               <%= f.select :status,["Applied","Enrolled","Shortlist","Waitlist"],{prompt: 'Select Status'},class: "form-control",id: "student_status" %>
+               <!-- ([["Applied","applied"], ["Enrolled", "enrolled"], ["Shortlist", "shortlist"], ["Waitlist", "waitlist"]]) -->
+              </div>
+            <%end%>
+            <div id="show_type" >
+              <div class="form-group">
+                <label>Type</label>
+                  <%= f.select :type_id,options_for_select(Type.pluck(:name,:id),selected: f.object.type_id),{prompt: "Select Type"},class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label>Start Date</label>
+                <%= f.date_field :start_date,class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label>End Date</label>
+                <%= f.date_field :end_date,class: "form-control" %>
+              </div>
+            </div>
+            <% if f.object.status == "Enrolled" && params[:action] == 'edit'%>
+              <div class="form-group">
+                <label>Type</label>
+                <%= f.select :type_id,options_for_select(Type.pluck(:name,:id),selected: f.object.type_id),{prompt: "Select Type"},class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label>Start Date</label>
+                <%= f.date_field :start_date,class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label>End Date</label>
+                <%= f.date_field :end_date,class: "form-control" %>
+              </div>
+            <% end %>
+
+            <div class="form-group">
+              <label>Who will drop off/pick up</label>
+              <%= f.select :pickup_dropoff,["Mother","Father","Brother","Sister","Uncle","Aunty","Own their own"],{prompt: 'pickup_dropoff'},class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label>Student Ref</label>
+              <%= f.text_field :student_ref,class: "form-control", placeholder: "Please add a custom student ref" %>
+            </div>
+            <div class="form-group">
+              <label>Language Spoken</label>
+              <%= f.text_field :languages_spoken,class: "form-control", placeholder: "Please enter languages spoken at home" %>
+            </div>
+            <div class="form-group">
+              <label>School Name</label>
+              <%= f.text_field :school_name,class: "form-control", placeholder: "Please enter name of the school the child goes" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Medical Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Doctor's Name</label>
+              <%= f.text_field :doctors_name,class: "form-control", placeholder: "Please enter name of child GP" %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :is_disabled,class: "form-check-input"  %>
+              <label class="form-check-label">Does the child have Disabilities (Medical condition)?</label>
+            </div>
+            <div class="form-group">
+              <label>If yes, please specify</label>
+              <%= f.text_area :disabilities_note,class: "form-control", placeholder: "Please enter disabilities note here" %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :special_needs,class: "form-check-input"  %>
+              <label class="form-check-label">Does the child have any Special Educational Needs?</label>
+            </div>
+            <div class="form-group">
+              <label>If yes, please specify</label>
+              <%= f.text_area :specialneeds_notes,class: "form-control", placeholder: "Please enter special note here" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Previous Maktab Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Previous Maktab Name</label>
+              <%= f.text_field :p_maktab_name,class: "form-control", placeholder: "Please enter Maktab/Madrasa name" %>
+            </div>
+            <div class="form-group">
+              <label>Previous Maktab Notes</label>
+              <%= f.text_area :p_maktab_notes,class: "form-control", placeholder: "Please enter notes e.g. Reason for leaving etc" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Fee Details</h6></div>
+          <div class="form-section">
+            <!-- <div class="form-check">
+              <%#= f.check_box :discount,class: "form-check-input"  %>
+              <label class="form-check-label">Discount,</label>
+              <%#= f.label :discount , "If selected, a #{APP_CONFIG['discount']}% sibling discount will be applied.",class: "form-check-label"%>
+            </div> -->
+            <div class="form-check">
+              <%= f.check_box :dd_student,class: "form-check-input",id: "myCheck_student",onclick: "myFunction()" %>
+              <label class="form-check-label">Direct Debit</label>
+            </div>
+            <div id="text_show_student">
+              <div class="form-group">
+                <label>Amount</label>
+                <%= f.text_field :dd_amount,class: "form-control", placeholder: "Please enter dd amount" %>
+              </div>
+              <div class="form-group">
+                <label>Start Date</label>
+                <%= f.date_field :dd_start_date,class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label>End Date</label>
+                <%= f.date_field :dd_end_date,class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Emergency Contact Details</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Emergency number 1</label>
+              <%= f.text_field :emergencyno_1,class: "form-control", placeholder: "Please enter emergency number 1" %>
+            </div>
+            <div class="form-group">
+              <label>Emergency number 2</label>
+              <%= f.text_field :emergencyno_2,class: "form-control", placeholder: "Please enter emergency number 2" %>
+            </div>
+            <div class="form-group">
+              <label>Emergency number 3</label>
+              <%= f.text_field :emergencyno_3,class: "form-control", placeholder: "Please enter emergency number 3" %>
+            </div>
+            <div class="form-group">
+              <label>Parent</label>
+                <%= f.select :parent_id,options_for_select([nil]+Parent.pluck(:name,:id),selected: f.object.parent_id),{prompt: "Select Parent"},class: "form-control" %>
+            </div>
+          </div>
+          <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Select Classrooms</h6></div>
+          <div class="form-section">
+            <div class="form-group">
+              <label>Classroom</label>
+              <div class="form-check">
+                <% Level.all.each do |level|%>
+                  <%= f.check_box :level_ids, {multiple: true}, level.id, false %>
+                  <label><%= level.name%></label>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <% if params[:action] == 'edit' %>
+              <%= link_to 'Cancel', student_path(@student),class: "btn btn-sm btn-warning" %>
+            <% else %>
+              <%= link_to 'Cancel', students_path,class: "btn btn-sm btn-warning" %>
+            <% end %>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  #text_show_student {
+    display:none;
+  }
+
+  .form-section{
+    padding: 0 25px;
+  }
+  #show_type {
+    display:none;
+  }
+</style>
+<script type="text/javascript">
+  function myFunction() {
+    var checkBox = document.getElementById("myCheck_student");
+    var text = document.getElementById("text_show_student");
+    if (checkBox.checked == true){
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+
+
+  $('#student_status').on('change', function() {
+    debugger
+    if ( this.value == 'Enrolled' )
+    {
+      $("#show_type").show();
+    }
+    else
+    {
+      $("#show_type").hide();
+
+    }
+  });
+
+
+
+</script>

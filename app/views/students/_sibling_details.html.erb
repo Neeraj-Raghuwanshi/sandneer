@@ -1,0 +1,23 @@
+<% if @student.parent.present? %>
+  <a class="inline" data-toggle="tooltip" data-title= "<%= @student.parent.relationship %>" href="/parents/<%= @student.parent.id %>">
+  <img class="rounded-circle thumb48" src="/assets/user/02.jpg" alt="member">
+  </a>
+
+  <% parent_id = @student.parent_id %>
+  <% @parent = Parent.find(parent_id) %>
+  <% @siblings = @parent.students.pluck(:name, :id,:gender) %>
+  <% @siblings.each do |sibling| %>
+    <% if sibling[0] != @student.name %>
+      <% if sibling[2] == "Male"%>
+        <a class="inline" data-toggle="tooltip" data-title="<%= sibling[0] %> - Brother" href="/students/<%= sibling[1]%>">
+        <img class="rounded-circle thumb24" src="/assets/user/02.jpg" alt="member">
+        </a>
+      <% elsif sibling[2] == "Female" %>
+        <a class="inline" data-toggle="tooltip" data-title= "<%= sibling[0] %> - Sister" href="/students/<%= sibling[1]%>">
+        <img class="rounded-circle thumb24" src="/assets/user/02.jpg" alt="member">
+      </a>
+      <% else %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

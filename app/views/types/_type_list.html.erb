@@ -1,0 +1,62 @@
+<% unless @types.blank? %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover" id="table-ext-3">
+      <thead>
+        <th data-check-all>
+          <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All">
+            <label>
+            <input type="checkbox" name = type_arr1[] value="<%= @types.ids %>" class="check_box_selection" id="type_main_checkbox" >
+            <span class="fa fa-check"></span>
+            </label>
+          </div>
+        </th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Fee</th>
+        <th>Payment Terms</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <% @types.order('created_at DESC').each do |type|%>
+          <tr>
+            <td>
+              <div class="checkbox c-checkbox">
+                <label>
+                <input type="checkbox" name = type_arr[] value="<%= type.id %>" id ="type_check_box">
+                <span class="fa fa-check"></span>
+                </label>
+              </div>
+            </td>
+            <td><%=link_to "#{type.name}",type_path(type.id)%></td>
+            <td>
+              <%= type.description %>
+            </td>
+            <td>£<%= type.fee %></td>
+            <td><%= type.payment_terms %></td>
+            <td><%= type.students_count %></td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                <span class="sr-only">primary</span>
+                </button>
+                <div class="dropdown-menu animated" role="menu">
+                  <%= link_to 'View',type_path(type.id),class: "dropdown-item"%>
+                  <%= link_to 'Edit',edit_type_path(type.id),class: "dropdown-item"%>
+                  <%= hidden_field_tag :d_type, type.id %>
+                  <a href="JavaScript:void(0);" class= "dropdown-item swal-demo8">Delete</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination-link">
+    <%= js_will_paginate @types %>
+  </div>
+<% else %>
+  <p class="no_record_found">No Type Found</p>
+<% end %>

@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          Classrooms
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <a href="/levels"><%= render_breadcrumbs :separator => ' / ' %></a>
+            </li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <%= link_to(new_level_path,class: 'btn btn-labeled btn-success mb-2') do %>
+             <span class="btn-label"><i class="fa fa-plus"></i></span>New Classroom</button>
+          <% end %>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-xl-2">
+          <div class="ml-auto">
+            <div class="input-group float-right">
+              <!-- <select class="custom-select" id="inputGroupSelect01">
+                <option value="0">Bulk action</option>
+                <option value="1">Delete</option>
+                <option value="2">Clone</option>
+                <option value="3">Export</option>
+              </select> -->
+              <div class="desktop-view">
+                <%= select_tag "Batch Action", options_for_select(level_batch_action),class: "custom-select",id: "level_batch",disabled: true  %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xl-4 hide-on-desktop">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+                <%= render 'filter_classroom'%>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-view">
+          <%= select_tag "Batch Action", options_for_select(level_batch_action),class: "custom-select",id: "level_batch",disabled: true  %>
+        </div>
+        <div class="col-xl-8">
+          <div class="card card-default">
+            <div id = "level_filter_table">
+              <%= render 'classroom_list'%>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 hide-on-mobile">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+                <%= render 'filter_classroom'%>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>
+<script>
+  $(document).on('click','#level_main_checkbox',function(){
+    if($(this).is(':checked')){
+      $('#level_batch').prop('disabled', false)
+    }else {
+      $('#level_batch').prop('disabled', true)
+    }
+
+  })
+  $(document).on('click','#level_check_box',function(){
+    if($(this).is(':checked')){
+      $('#level_batch').prop('disabled', false)
+    }else {
+      $('#level_batch').prop('disabled', true)
+    }
+  })
+</script>

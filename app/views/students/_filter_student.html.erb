@@ -1,0 +1,163 @@
+<%= form_tag '/students' ,method: :get,remote: true do%>
+  <table class="table bb table-striped filter-table">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">First Name</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[first_name_contains]", options_for_select(student_filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'first_name' ,params[:first_name],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Last Name</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[last_name_contains]", options_for_select(student_filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'last_name' ,params[:last_name],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">DOB</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>From</div>
+          <div class="form-group">
+            <%= date_field "dob", "start_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>To</div>
+          <div class="form-group">
+            <%= date_field "dob", "end_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Gender</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "gender", options_for_select([nil]+Student.pluck(:gender).uniq),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Classroom</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "level_name", options_for_select([nil]+Level.pluck(:name).uniq),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Student Type</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "type_id", options_for_select([nil]+Type.pluck(:name,:id)),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Ethnicity Group</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "ethnicity_group", options_for_select([nil]+ethnicity_group),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Student Ref</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[student_ref_contains]", options_for_select(student_filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'student_ref' ,params[:student_ref],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Parent</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "parent_id", options_for_select([nil]+Parent.pluck(:name,:id)),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= submit_tag 'Filter',class: "btn btn-sm btn-primary", id: "filter_student_list"%>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= link_to 'Clear filter', students_path,class: "btn btn-sm btn-warning", id: "clear-filter" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<style type="text/css">
+  .filter-table td{
+    padding: 5px;
+  }
+  .filter-table td .form-group{
+    margin-bottom: 0;
+  }
+  #student_clear-filter{
+    margin-left: -76px;
+  }
+</style>
+

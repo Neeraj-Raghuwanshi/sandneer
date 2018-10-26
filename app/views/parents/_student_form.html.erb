@@ -1,0 +1,195 @@
+<%= form_group_for s, :first_name, label: false  do %>
+  <div class="bg-gray-lighter px-3 py-2 my-3"><h6>Personal Details</h6></div>
+    <div class="form-section">
+      <div class="form-group">
+        <label>First Name*</label>
+        <%= s.text_field :first_name ,class: "form-control", placeholder: "Enter first_name"%>
+      </div>
+    </div>
+<%end%>
+<div class="form-section">
+  <%= form_group_for s, :last_name, label: false  do %>
+    <div class="form-group">
+      <label>Last Name*</label>
+      <%= s.text_field :last_name ,class: "form-control", placeholder: "Enter last_name"%>
+    </div>
+  <%end%>
+  <%= form_group_for s, :dob, label: false  do %>
+    <div class="form-group">
+      <label>Date Of Birth*</label>
+      <%= s.date_field :dob,class: "form-control" %>
+    </div>
+  <%end%>
+  <%= form_group_for s, :gender, label: false  do %>
+    <div class="form-group">
+      <label>Gender*</label>
+      <%= s.select :gender,['Male','Female'],{prompt: 'Select Gender'}, { :class => 'form-control' } %>
+    </div>
+  <%end%>
+  <div class="form-group">
+    <label>Ethnicity Group</label>
+    <%= s.select :ethnicity_group,["Indian","Pakistani","Bangladeshi","Afghan","Arab","Any other Asian background","Caribbean","African","Any other Black background","White and Black Caribbean","White and Black African","White and Asian","Any other mixed background","Chinese","British","Irish","Indonesian","Any other White background","Any other ethnic group"],{prompt: 'Select Ethnicity Group'}, { :class => 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <label>Address</label>
+    <%= s.text_field :address,class: "form-control", placeholder: "if same as parent leave blank as this will automatically be filled in" %>
+  </div>
+  <div class="form-group">
+    <label>Postcode</label>
+    <%= s.text_field :postcode,class: "form-control", placeholder: "if same as parent leave blank as this will automatically be filled in" %>
+  </div>
+  <div class="form-group">
+    <label>Mobile</label>
+    <%= s.text_field :mobile,class: "form-control", placeholder: "if same as parent leave blank as this will automatically be filled in" %>
+  </div>
+  <div class="form-group">
+    <label>Home Phone</label>
+    <%= s.text_field :home_phone,class: "form-control", placeholder: "if same as parent leave blank as this will automatically be filled in" %>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+   <%= s.text_field :email,class: "form-control", placeholder: "Enter email" %>
+  </div>
+  <%= form_group_for s, :status, label: false  do %>
+    <div class="form-group">
+      <label>Status*</label>
+     <%= s.select :status,["Applied","Enrolled","Short list","Waiting List"],{prompt: 'Select Status'},class: "form-control" %>
+    </div>
+  <%end%>
+  <div class="form-group">
+    <label>Start Date</label>
+    <%= s.date_field :start_date,class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>End Date</label>
+    <%= s.date_field :end_date,class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Who will drop off/pick up</label>
+    <%= s.select :pickup_dropoff,["Mother","Father","Brother","Sister","Uncle","Aunty","Own their own"],{prompt: 'pickup_dropoff'},class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>Student Ref</label>
+    <%= s.text_field :student_ref,class: "form-control", placeholder: "add a custom student ref" %>
+  </div>
+  <div class="form-group">
+    <label>School Name</label>
+    <%= s.text_field :school_name,class: "form-control", placeholder: "Enter name of the school the child goes" %>
+  </div>
+  <div class="form-group">
+    <label>Language Spoken</label>
+    <%= s.text_field :languages_spoken,class: "form-control", placeholder: "Enter languages spoken at home" %>
+  </div>
+</div>
+<div class="bg-gray-lighter px-3 py-2 my-3"><h6>Medical Details</h6></div>
+<div class="form-section">
+  <div class="form-group">
+    <label>Doctor's Name</label>
+    <%= s.text_field :doctors_name,class: "form-control", placeholder: "Enter name of childs GP" %>
+  </div>
+  <div class="form-check">
+    <%= s.check_box :is_disabled,class: "form-check-input"  %>
+    <label class="form-check-label">Does the child have Disabilities (Medical condition)?</label>
+  </div>
+  <div class="form-group">
+    <label>If yes, please specify</label>
+    <%= s.text_area :disabilities_note,class: "form-control", placeholder: "Enter disabilities note here" %>
+  </div>
+</div>
+<div class="bg-gray-lighter px-3 py-2 my-3"><h6>Other Details</h6></div>
+<div class="form-section">
+  <div class="form-check">
+    <%= s.check_box :special_needs,class: "form-check-input"  %>
+    <label class="form-check-label">Does the child have any Special Educational Needs?</label>
+  </div>
+  <div class="form-group">
+    <label>If yes, please specify</label>
+    <%= s.text_area :specialneeds_notes,class: "form-control", placeholder: "Enter special note here" %>
+  </div>
+</div>
+<div class="bg-gray-lighter px-3 py-2 my-3"><h6>Previous Maktab Details</h6></div>
+<div class="form-section">
+  <div class="form-group">
+    <label>Previous Maktab Name</label>
+    <%= s.text_field :p_maktab_name,class: "form-control", placeholder: "Enter Maktab/Madrasa name" %>
+  </div>
+  <div class="form-group">
+    <label>Previous Maktab Notes</label>
+    <%= s.text_area :p_maktab_notes,class: "form-control", placeholder: "Enter notes e.g. Reason for leaving etc" %>
+  </div>
+</div>
+<div class="bg-gray-lighter px-3 py-2 my-3"><h6>Emergency Contact Details</h6></div>
+<div class="form-section">
+  <div class="form-group">
+    <label>Emergency number 1</label>
+    <%= s.text_field :emergencyno_1,class: "form-control", placeholder: "Enter emergency number 1" %>
+  </div>
+  <div class="form-group">
+    <label>Emergency number 2</label>
+    <%= s.text_field :emergencyno_2,class: "form-control", placeholder: "Enter emergency number 2" %>
+  </div>
+  <div class="form-group">
+    <label>Emergency number 3</label>
+    <%= s.text_field :emergencyno_3,class: "form-control", placeholder: "Enter emergency number 3" %>
+  </div>
+  <div class="form-check">
+    <%= s.check_box :discount,class: "form-check-input"  %>
+    <label class="form-check-label">Discount,</label>
+    <%= s.label :discount , "If selected, a #{APP_CONFIG['discount']}% sibling discount will be applied.",class: "form-check-label"%>
+  </div>
+  <div class="form-group">
+    <label>Classroom</label>
+    <div class="form-check">
+      <% Level.all.each do |level|%>
+        <%= s.check_box :level_ids, {multiple: true}, level.id, false %>
+        <label><%= level.name%></label>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="bg-gray-lighter px-3 py-2 my-3">Fee Details</div>
+<div class="form-section">
+  <div class="form-check">
+    <%= s.check_box :dd_student,class: "form-check-input",id: "myCheck",onclick: "myFunction()" %>
+    <label class="form-check-label">Direct Debit</label>
+  </div>
+  <div id="text_show">
+    <div class="form-group">
+      <label>Amount</label>
+      <%= s.text_field :dd_amount,class: "form-control", placeholder: "Enter dd amount" %>
+    </div>
+    <div class="form-group">
+      <label>Start Date</label>
+      <%= s.date_field :dd_start_date,class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>End Date</label>
+      <%= s.date_field :dd_end_date,class: "form-control" %>
+    </div>
+  </div>
+</div>
+<% unless @parent.persisted? %>
+  <div class="form-group">
+    <%= s.link_to_remove 'Remove Student',class: "btn btn-sm btn-warning"%>
+  </div>
+<%end%>
+<style type="text/css">
+  #text_show {
+    display:none;
+  }
+
+  .form-section{
+    padding: 0 25px;
+  }
+</style>
+<script type="text/javascript">
+  function myFunction() {
+    var checkBox = document.getElementById("myCheck");
+    var text = document.getElementById("text_show");
+    if (checkBox.checked == true){
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+</script>

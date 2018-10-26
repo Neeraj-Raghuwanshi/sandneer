@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Parent Form</div>
+        <div class="card-body">
+          <%= nested_form_for @parent do |f| %>
+            <%= form_group_for f, :name, label: false  do %>
+              <div class="form-group">
+                <label>Name*</label>
+                <%= f.text_field :name ,class: "form-control", placeholder: "Enter name"%>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Address</label>
+              <%= f.text_field :address ,class: "form-control", placeholder: "Enter address"%>
+            </div>
+            <div class=" form-group">
+              <label>Postcode</label>
+              <%= f.text_field :postcode,class: "form-control",placeholder: "Enter address"%>
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <%= f.select :country ,options_for_select(Parent::UK_OPTION),{prompt: 'Select Country'} ,class: "form-control"%>
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <%= f.text_field :city ,class: "form-control", placeholder: "Enter city"%>
+            </div>
+            <div class="form-group">
+              <label>Home Phone</label>
+              <%= f.text_field :home_phone,class: "form-control",placeholder: "Enter home phone"%>
+            </div>
+            <%= form_group_for f, :mobile, label: false  do %>
+              <div class="form-group">
+                <label>Mobile*</label>
+                <%= f.text_field :mobile ,class: "form-control", placeholder: "Enter mobile"%>
+                <p class="inline-hints"></p>
+              </div>
+            <%end%>
+            <div class="form-group">
+              <label>Email</label>
+              <%= f.text_field :email ,class: "form-control", placeholder: "Enter mobile"%>
+            </div>
+            <%= form_group_for f, :relationship, label: false  do %>
+              <div class="form-group">
+                <label >Relationship*</label>
+                <%= f.select :relationship,['Mother','Father'],{prompt: 'Select Relationship'} ,class: "form-control"%>
+              </div>
+            <%end%>
+            <label >Notify (If yes an email will be sent to the parent.)</label><br>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :notify,true ,class: "form-check-input"%>
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+             <%= f.radio_button :notify,false ,class: "form-check-input"%>
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div><br><br>
+            <%unless @parent.persisted?%>
+              <h3>Student Form</h3>
+                <%= f.fields_for :students do |s|%>
+                  <%= render 'student_form',s: s%>
+                <%end%>
+              <div class="form-group">
+                <%= f.link_to_add 'Add Student',:students,class: "btn btn-sm btn-primary"%>
+              </div>
+            <%end%>
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <%= link_to 'Cancel', parents_path,class: "btn btn-sm btn-warning" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).on('blur', '#parent_mobile', function() {
+    var mobile_number;
+    mobile_number = $(this).val();
+    $.ajax({
+      url: '/check_parent_number.js',
+      data: {
+        mobile_number: mobile_number
+      },
+      type: 'get',
+      success: function(data) {}
+    });
+  });
+</script>
