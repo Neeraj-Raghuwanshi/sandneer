@@ -26,20 +26,20 @@ class ParentsController < ApplicationController
   def edit;end
 
   def create
-   count = 0
-   more_count = 0
-   @parent = Parent.new(parent_params)
-   if params[:parent][:students_attributes].present?
-     params[:parent][:students_attributes].each do |student|
-       if student.to_a.last[:dd_student] == "1"
+    count = 0
+    more_count = 0
+    @parent = Parent.new(parent_params)
+    if params[:parent][:students_attributes].present?
+      params[:parent][:students_attributes].each do |student|
+        if student.to_a.last[:dd_student] == "1"
          unless student.to_a.last[:dd_amount].present? && student.to_a.last[:dd_start_date].present?
-           count = 1
-           break
+            count = 1
+            break
          end
        end
      end
    else
-     more_count = 1
+    more_count = 1
    end
    count.eql?(1) || !@parent.save ?  render('new') : redirect_to(parents_path)
    count.eql?(1) ? flash[:alert] = "Please fill dd_amount and dd_start_date" : @parent.save ? flash[:notice] = "Parent created successfully" : nil
@@ -61,7 +61,6 @@ class ParentsController < ApplicationController
       params[:batch_arr].each do |value|
         @parent = Parent.find(value)
         @parent.delete
-
       end
     end
   end

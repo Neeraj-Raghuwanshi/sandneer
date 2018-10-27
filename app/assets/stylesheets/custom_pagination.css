@@ -82,3 +82,45 @@
     display: none;
   }
 }
+
+/*Level filter mobile view scroll*/
+<style type="text/css">
+  @media screen and (max-width: 767px) {
+  #level_filter_table{
+    overflow-x: auto;
+  }
+</style>
+
+/*For Student status and student filter scroll*/
+input.btn-outline-success.active {
+    background: #27c24c !important;
+  }
+  input.btn-outline-primary.active{
+    background: #5d9cec !important;
+  }
+  input.btn-outline-warning.active{
+    background: #ff902b !important;
+  }
+  input.btn-outline-info.active{
+    background: #23b7e5 !important;
+  }
+  input.btn-outline-danger.active{
+    background: #f05050 !important;
+  }
+
+  @media screen and (max-width: 767px) {
+  #student_list_table{
+    overflow-x: auto;
+  }
+
+  /*Parent filter mobile view scroll*/
+  @media screen and (max-width: 767px) {
+  #parent_filter_table{
+    overflow-x: auto;
+  }
+
+/*Teacher filter mobile view scroll*/
+  @media screen and (max-width: 767px) {
+  #teacher_list_table{
+    overflow-x: auto;
+  }

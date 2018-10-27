@@ -5,7 +5,6 @@
   <%= render 'layouts/right_sidebar'%>
   <section class="section-container">
     <div class="content-wrapper">
-
       <div class="content-heading">
         <div>
           Parents
@@ -26,12 +25,6 @@
         <div class="col-xl-2">
           <div class="ml-auto">
             <div class="input-group float-right">
-              <!-- <select class="custom-select" id="batch_action_kind" disabled>
-                <option value="0">Email Selected</option>
-                <option value="1">Sms Selected</option>
-                <option value="2">Give Permission</option>
-                <option value="3">Delete Selected</option>
-              </select> -->
               <div class="desktop-view">
                 <%= select_tag "Batch Action", options_for_select(batch_action_name),class: "custom-select",id: "batch_action_kind", disabled: true %>
               </div>
@@ -71,9 +64,11 @@
   </section>
   <%= render '/layouts/footer'%>
 </div>
+
 <script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/theme_js/js/app.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
 <script>
   // var batch_arr = new Array();
   $(document).on('click','#main_checkbox',function(){

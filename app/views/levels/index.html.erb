@@ -24,12 +24,6 @@
         <div class="col-xl-2">
           <div class="ml-auto">
             <div class="input-group float-right">
-              <!-- <select class="custom-select" id="inputGroupSelect01">
-                <option value="0">Bulk action</option>
-                <option value="1">Delete</option>
-                <option value="2">Clone</option>
-                <option value="3">Export</option>
-              </select> -->
               <div class="desktop-view">
                 <%= select_tag "Batch Action", options_for_select(level_batch_action),class: "custom-select",id: "level_batch",disabled: true  %>
               </div>
@@ -37,7 +31,7 @@
           </div>
         </div>
       </div>
-      <br />
+      <br>
       <div class="row">
         <div class="col-xl-4 hide-on-desktop">
           <div class="card card-default">
@@ -88,3 +82,4 @@
     }
   })
 </script>
+
