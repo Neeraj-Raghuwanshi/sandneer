@@ -3078,6 +3078,105 @@
                 }
             });
         });
+
+        // Attendance
+        $('.swal-demo10').on('click', function(e) {
+            e.preventDefault();
+            var at_id = $('#d_attendance').val();
+            swal({
+              title: "Are you sure?",
+              text: "This attendance will be deleted",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              cancelButtonText: "No, cancel please!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                  $.ajax({
+                    url: "/attendances/"+at_id,
+                    type: "DELETE",
+                    data: {id: at_id },
+                    success: function () {
+                      swal("Done!","It was succesfully deleted!","success");
+                      window.setTimeout(function(){
+                      window.location.href = "/attendances";
+                    }, 900);
+                    }
+                  });
+                } else {
+                  swal("Cancelled", "Your attendance is safe :)", "error");
+                }
+            });
+        });
+
+        // key_event
+        $('.swal-demo11').on('click', function(e) {
+            e.preventDefault();
+            var ke_id = $('#d_keyevent').val();
+            swal({
+              title: "Are you sure?",
+              text: "This key event will be deleted",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              cancelButtonText: "No, cancel please!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                  $.ajax({
+                    url: "/key_events/"+ke_id,
+                    type: "DELETE",
+                    data: {id: ke_id },
+                    success: function () {
+                      swal("Done!","It was succesfully deleted!","success");
+                      window.setTimeout(function(){
+                      window.location.href = "/key_events";
+                    }, 900);
+                    }
+                  });
+                } else {
+                  swal("Cancelled", "Your key event is safe :)", "error");
+                }
+            });
+        });
+
+        // event
+        $('.swal-demo12').on('click', function(e) {
+            e.preventDefault();
+            var e_id = $('#d_event').val();
+            swal({
+              title: "Are you sure?",
+              text: "This event will be deleted",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              cancelButtonText: "No, cancel please!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                  $.ajax({
+                    url: "/events/"+e_id,
+                    type: "DELETE",
+                    data: {id: e_id },
+                    success: function () {
+                      swal("Done!","It was succesfully deleted!","success");
+                      window.setTimeout(function(){
+                      window.location.href = "/events";
+                    }, 900);
+                    }
+                  });
+                } else {
+                  swal("Cancelled", "Your event is safe :)", "error");
+                }
+            });
+        });
     }
 
 })(window, document, window.jQuery);
@@ -3893,45 +3992,29 @@
             m = date.getMonth(),
             y = date.getFullYear();
 
-        return [{
-            title: 'All Day Event',
-            start: new Date(y, m, 1),
-            backgroundColor: '#f56954', //red
-            borderColor: '#f56954' //red
-        }, {
-            title: 'Long Event',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2),
-            backgroundColor: '#f39c12', //yellow
-            borderColor: '#f39c12' //yellow
-        }, {
-            title: 'Meeting',
-            start: new Date(y, m, d, 10, 30),
-            allDay: false,
-            backgroundColor: '#0073b7', //Blue
-            borderColor: '#0073b7' //Blue
-        }, {
-            title: 'Lunch',
-            start: new Date(y, m, d, 12, 0),
-            end: new Date(y, m, d, 14, 0),
-            allDay: false,
-            backgroundColor: '#00c0ef', //Info (aqua)
-            borderColor: '#00c0ef' //Info (aqua)
-        }, {
-            title: 'Birthday Party',
-            start: new Date(y, m, d + 1, 19, 0),
-            end: new Date(y, m, d + 1, 22, 30),
-            allDay: false,
-            backgroundColor: '#00a65a', //Success (green)
-            borderColor: '#00a65a' //Success (green)
-        }, {
-            title: 'Open Google',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            url: '//google.com/',
-            backgroundColor: '#3c8dbc', //Primary (light-blue)
-            borderColor: '#3c8dbc' //Primary (light-blue)
-        }];
+
+
+        function myCallback(response) {
+          var events = response
+          var events_array = []
+          for (const key of events) {
+            var a = {}
+            a["title"] = key.description + ","
+            a["start"] = new Date(y, m, d - 5) + ","
+            a["end"] = new Date(y, m, d - 2) + ","
+            a["backgroundColor"] = '#f56954'
+            events_array.push(a)
+          }
+          return events_array;
+        }
+
+        $.ajax({
+          datatype: "json",
+          url: '/get_event_details',
+          method: "get",
+          success: myCallback,
+        });
+
     }
 
 })(window, document, window.jQuery);
@@ -4357,6 +4440,52 @@
     function initDatatables() {
       if (!$.fn.DataTable) return;
 
+      // events
+      $('#datatable15').DataTable({
+        'paging': true, // Table pagination
+        'ordering': true, // Column ordering
+        'info': true, // Bottom left status text
+        responsive: true,
+        destroy: true,
+        // Text translation options
+        // Note the required keywords between underscores (e.g _MENU_)
+        oLanguage: {
+          sSearch: '<em class="fas fa-search"></em>',
+          sLengthMenu: '_MENU_ records per page',
+          info: 'Showing page _PAGE_ of _PAGES_',
+          zeroRecords: 'Nothing found - sorry',
+          infoEmpty: 'No records available',
+          infoFiltered: '(filtered from _MAX_ total records)',
+          oPaginate: {
+              sNext: '<em class="fa fa-caret-right"></em>',
+              sPrevious: '<em class="fa fa-caret-left"></em>'
+          }
+        }
+      });
+
+      // key events
+      $('#datatable16').DataTable({
+        'paging': true, // Table pagination
+        'ordering': true, // Column ordering
+        'info': true, // Bottom left status text
+        responsive: true,
+        destroy: true,
+        // Text translation options
+        // Note the required keywords between underscores (e.g _MENU_)
+        oLanguage: {
+          sSearch: '<em class="fas fa-search"></em>',
+          sLengthMenu: '_MENU_ records per page',
+          info: 'Showing page _PAGE_ of _PAGES_',
+          zeroRecords: 'Nothing found - sorry',
+          infoEmpty: 'No records available',
+          infoFiltered: '(filtered from _MAX_ total records)',
+          oPaginate: {
+              sNext: '<em class="fa fa-caret-right"></em>',
+              sPrevious: '<em class="fa fa-caret-left"></em>'
+          }
+        }
+      });
+
       //Level Datatable
       $('#datatable13').DataTable({
         'paging': true, // Table pagination
@@ -4426,6 +4555,7 @@
           }
         }
       });
+
         // Filter
 
         $('#datatable2').DataTable({

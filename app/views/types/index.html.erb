@@ -71,27 +71,3 @@
 </div>
 <script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/theme_js/js/app.js"></script>
-
-<script>
-  $(document).on('click','#type_main_checkbox',function(){
-    if($(this).is(':checked')){
-      $('#type_batch').prop('disabled', false)
-    }else {
-      $('#type_batch').prop('disabled', true)
-    }
-
-  })
-  $(document).on('click','#type_check_box',function(){
-    if($(this).is(':checked')){
-      $('#type_batch').prop('disabled', false)
-    }else {
-      $('#type_batch').prop('disabled', true)
-    }
-  })
-</script>
-<style type="text/css">
-  @media screen and (max-width: 767px) {
-  #type_list_table{
-    overflow-x: auto;
-  }
-</style>

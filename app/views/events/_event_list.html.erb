@@ -1,0 +1,55 @@
+<% unless @events.blank?%>
+  <table class="table w-100 table-striped" id="datatable15">
+    <thead>
+      <tr>
+      <th data-check-all style="padding: 0.75rem">
+        <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All" >
+          <label>
+          <input type="checkbox" name = parent_arr1[] value="<%= @events.ids %>" class="check_box_selection" id="event_main_checkbox" >
+          <span class="fa fa-check"></span>
+          </label>
+        </div>
+        </th>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.order('created_at DESC').each do |event|%>
+        <tr>
+          <td >
+            <div class="checkbox c-checkbox table-check">
+              <label>
+              <input type="checkbox" name = teacher_arr[] value="<%= event.id %>" id="event_check_selection">
+              <span class="fa fa-check"></span>
+              </label>
+            </div>
+          </td>
+          <td><%= event.id%></td>
+          <td><%= event.description %></td>
+          <td><%= event.start_date %></td>
+          <td><%= event.end_date %></td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+              <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+              <span class="sr-only">primary</span>
+              </button>
+              <div class="dropdown-menu" role="menu">
+                <%= link_to 'View',event_path(event.id),class: "dropdown-item"%>
+                <%= link_to 'Edit',edit_event_path(event.id),class: "dropdown-item"%>
+                <%= hidden_field_tag :d_event, event.id %>
+                <a href="JavaScript:void(0);" class= "dropdown-item swal-demo12">Delete</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<% else %>
+  <p class="no_record_found">No Event Found</p>
+<% end %>

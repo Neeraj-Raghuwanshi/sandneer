@@ -36,31 +36,9 @@
               </div>
             <% end %>
             <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
-            <%= link_to 'Cancel', level_path,class: "btn btn-sm btn-warning" %>
+            <%= link_to 'Cancel', levels_path,class: "btn btn-sm btn-warning" %>
           <% end %>
         </div>
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(document).on('change', '#level_classroom_type', function(ev) {
-    if ($(ev.target).val() === 'weekdays') {
-      $('#level_days_monday')[0].checked = true
-      $('#level_days_tuesday')[0].checked = true
-      $('#level_days_wednesday')[0].checked = true
-      $('#level_days_thursday')[0].checked = true
-      $('#level_days_friday')[0].checked = true
-      $('#level_days_sunday')[0].checked = false
-      $('#level_days_saturday')[0].checked = false
-    }
-    if ($(ev.target).val() === 'weekend') {
-      $('#level_days_sunday')[0].checked = true
-      $('#level_days_saturday')[0].checked = true
-      $('#level_days_monday')[0].checked = false
-      $('#level_days_tuesday')[0].checked = false
-      $('#level_days_wednesday')[0].checked = false
-      $('#level_days_thursday')[0].checked = false
-      $('#level_days_friday')[0].checked = false
-    }
-  });
-</script>

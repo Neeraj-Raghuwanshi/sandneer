@@ -4994,7 +4994,7 @@ body .jvectormap-zoomout {
 
 
 /*================form field border color with error================*/
-.field_with_errors input,.field_with_errors select {
+.field_with_errors input,.field_with_errors select,.field_with_errors textarea {
   border-color: red;
 }
 p.help-block{

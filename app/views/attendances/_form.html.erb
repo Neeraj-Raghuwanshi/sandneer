@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Attendance Form</div>
+      <div class="card-body">
+        <%= form_for @attendance do |f| %>
+          <%= form_group_for f, :present, label: false  do %>
+            <div class="form-group">
+              <label>Present*</label>
+              <%= f.select :present,([["Present","present"], ["Absent", "absent"],["Late", "late"],["Authorized Absent", "authorized Absent"]]),{prompt: 'Select attendance'}, { :class => 'form-control' } %>
+            </div>
+          <%end%>
+          <div class="form-group">
+            <label>Reason</label>
+            <%= f.text_area :reason ,class: "form-control", placeholder: "Please enter reason"%>
+          </div>
+          <div class="form-group">
+            <label>Absent Reason</label>
+            <%= f.text_area :absent_reason ,class: "form-control", placeholder: "Please enter absent reason"%>
+          </div>
+          <div class="form-group">
+            <label>Authorized Absent Reason</label>
+            <%= f.text_area :authorized_absent_reason ,class: "form-control", placeholder: "Please enter authorized absent reason"%>
+          </div>
+          <%= form_group_for f, :attendance_date, label: false  do %>
+            <div class="form-group">
+              <label>Attendance Date*</label>
+              <%= f.date_field :attendance_date,class: "form-control" %>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <label>Student</label>
+              <%= f.select :student_id,options_for_select(Student.pluck(:name,:id),selected: f.object.student_id),{prompt: "Select Student"},class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label>Classroom</label>
+              <%= f.select :level_id,options_for_select(Level.pluck(:name,:id),selected: f.object.level_id),{prompt: "Select Classroom"},class: "form-control" %>
+          </div>
+          <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+          <%= link_to 'Cancel', attendances_path,class: "btn btn-sm btn-warning" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

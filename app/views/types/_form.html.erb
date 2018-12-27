@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card card-default">
-      <div class="card-header">Classroom Form</div>
+      <div class="card-header">Type Form</div>
         <div class="card-body">
           <%= form_for @type do |f| %>
             <%= form_group_for f, :name, label: false  do %>
@@ -12,7 +12,7 @@
             <%end%>
             <div class="form-group">
               <label>Description</label>
-              <%= f.text_area :description ,class: "form-control", placeholder: "Please enter address"%>
+              <%= f.text_area :description ,class: "form-control", placeholder: "Please enter description"%>
             </div>
             <%= form_group_for f, :fee, label: false  do %>
               <div class="form-group">

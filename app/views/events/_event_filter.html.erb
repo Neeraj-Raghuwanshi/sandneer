@@ -1,0 +1,102 @@
+<%= form_tag '/events' ,method: :get,remote: true do%>
+  <table class="table bb table-striped filter-table">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Key Event</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "key_event_id", options_for_select([nil]+KeyEvent.pluck(:name,:id).uniq),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Description</label>
+        </td>
+      </tr>
+      <tr>
+        <td width="50%">
+          <div class="form-group">
+            <%= select_tag "q[description_contains]", options_for_select(event_filter_name),class: "chosen-select form-control"%>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <%= text_field_tag 'description',params[:description],class: " form-control "%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">Start Date</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>From</div>
+          <div class="form-group">
+            <%= date_field "start_date", "start_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>To</div>
+          <div class="form-group">
+            <%= date_field "start_date", "end_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label">End Date</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>From</div>
+          <div class="form-group">
+            <%= date_field "end_date", "start_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div>To</div>
+          <div class="form-group">
+            <%= date_field "end_date", "end_date",class: "form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= submit_tag 'Filter',class: "btn btn-sm btn-primary"%>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= link_to 'Clear filter',events_path,class: "btn btn-sm btn-warning", id: "event_clear-filter" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<style type="text/css">
+  .filter-table td{
+    padding: 5px;
+  }
+  .filter-table td .form-group{
+    margin-bottom: 0;
+  }
+  #event_clear-filter{
+    margin-left: -100px;
+  }
+</style>
+

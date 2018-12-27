@@ -1,0 +1,40 @@
+<table class="table bb">
+  <tbody>
+    <tr>
+      <td>
+        <strong>Address</strong>
+      </td>
+      <td><%= @teacher.address %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>City</strong>
+      </td>
+      <td><%= @teacher.city %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Postcode</strong>
+      </td>
+      <td><%= @teacher.postcode %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Contact</strong>
+      </td>
+      <td><%= @teacher.contact %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Email</strong>
+      </td>
+      <td><%= @teacher.email %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Created at</strong>
+      </td>
+      <td><%= @teacher.created_at.strftime('%d %B,%Y')%></td>
+    </tr>
+  </tbody>
+</table>

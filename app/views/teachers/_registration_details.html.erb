@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <label class="col-form-label">DBS Check:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <% if @teacher.crb_checked == true %>
+            <div>Yes</div>
+          <%else%>
+            <div>No</div>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">DBS checked on:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @teacher.crb_checked_on %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">DBS ref number:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @teacher.dbs_ref %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          Attendances
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <a href="/types"><%= render_breadcrumbs :separator => ' / ' %></a>
+            </li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <%= link_to(new_attendance_path,class: 'btn btn-labeled btn-success mb-2') do %>
+          <span class="btn-label"><i class="fa fa-plus"></i></span>New Attendance
+          <% end %>
+        </div>
+      </div>
+      <!-- START card-->
+      <div class="row">
+        <div class="col-xl-2">
+          <div class="ml-auto">
+            <div class="input-group float-right">
+              <select class="custom-select" id="attendance_bacth_action" disabled="true">
+                <option value="0">Bulk action</option>
+                <option value="2">Delete</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card card-default">
+            <div id="attendance_list_table">
+              <%= render 'attendance_list' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'attendance_filter' %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>

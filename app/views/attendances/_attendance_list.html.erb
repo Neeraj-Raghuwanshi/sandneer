@@ -1,0 +1,59 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-hover" id="table-ext-3">
+    <thead>
+      <th data-check-all>
+        <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All">
+          <label>
+          <input type="checkbox" name = attendance_arr1[] value="<%= @attendances.ids %>" class="check_box_selection" id="attendance_main_checkbox" >
+          <span class="fa fa-check"></span>
+          </label>
+        </div>
+      </th>
+      <th>Attendance Date</th>
+      <th>Present</th>
+      <th>Reason</th>
+      <th>Absent Reason</th>
+      <th>Authorized Absent Reason</th>
+      <th>Student</th>
+      <th>Classroom</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <% @attendances.order('created_at DESC').each do |attendance| %>
+        <tr>
+          <td>
+            <div class="checkbox c-checkbox">
+              <label>
+              <input type="checkbox" name = attendance_arr1[] value="<%= attendance.id %>" class="check_box_selection" id="attendance_selection" >
+              <span class="fa fa-check"></span>
+              </label>
+            </div>
+          </td>
+          <td><%= attendance.attendance_date %></td>
+          <td>
+            <%= attendance.present %>
+          </td>
+          <td><%= attendance.reason %></td>
+          <td><%= attendance.absent_reason %></td>
+          <td><%= attendance.authorized_absent_reason %></td>
+          <td><%= Student.find(attendance.student_id).name %></td>
+          <td><%= Level.find(attendance.level_id).name %></td>
+          <td>
+            <div class="btn-group">
+              <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+              <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+              <span class="sr-only">primary</span>
+              </button>
+              <div class="dropdown-menu animated" role="menu">
+                <%= link_to 'View',attendance_path(attendance.id),class: "dropdown-item"%>
+                <%= link_to 'Edit',edit_attendance_path(attendance.id),class: "dropdown-item"%>
+                <%= hidden_field_tag :d_attendance, attendance.id %>
+                <a href="JavaScript:void(0);" class= "dropdown-item swal-demo10">Delete</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

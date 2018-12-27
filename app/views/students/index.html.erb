@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
-
 <div class="wrapper">
   <%= render 'layouts/header'%>
   <%= render 'layouts/left_sidebar'%>
@@ -93,50 +92,7 @@
 <script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/theme_js/js/app.js"></script>
 
-<script>
-  // For Batch action enabled disabled when check on all checkbox
-  $(document).on('click','#student_main_checkbox',function(){
-    if($(this).is(':checked')){
-      $('#student_batch').prop('disabled', false)
-    }else {
-      $('#student_batch').prop('disabled', true)
-    }
-
-  })
-
-  // For Batch action enabled disabled when check on each checkbox
-  $(document).on('click','#student_check_box',function(){
-    if($(this).is(':checked')){
-      $('#student_batch').prop('disabled', false)
-    }else {
-      $('#student_batch').prop('disabled', true)
-    }
-  })
-
-  // Batch action modelpopup
-  $( document ).ready(function() {
-   $( "#student_batch" ).change(function() {
-     var actions = this.value;
-     // alert(actions);
-      if(actions == 1)
-        $('#gdprModal').modal('show')
-      if(actions == 2)
-        $('#emailModal').modal('show')
-      if(actions == 3)
-        $('#smsModal').modal('show')
-       });
-  });
-
-  // For all status buttons
-  $(".mb-1").click(function() {
-   $(this).addClass('active');
-   $(this).siblings("input").removeClass("active");
-  });
-
-</script>
-
 <!-- Batch Action model popup -->
-
 <!-- Email Modal-->
 <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
   <%= render 'email_model_popup'%>

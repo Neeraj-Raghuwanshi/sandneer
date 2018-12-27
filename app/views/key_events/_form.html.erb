@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-default">
+      <div class="card-header">Classroom Form</div>
+        <div class="card-body">
+          <%= form_for @key_event do |f| %>
+            <div class="form-group">
+              <label>Name</label>
+              <%= f.text_field :name ,class: "form-control", placeholder: "Enter name"%>
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <%= f.hidden_field :color, id: "event_color_field" %>
+              <ul class="list-inline external-event-color-selector">
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-danger circle-xl event_color" href="javascript:void(0)" id="#f05050"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-primary circle-xl event_color" id="#5d9cec" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-info circle-xl selected event_color" id="#23b7e5" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-success circle-xl event_color" id="#27c24c" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-warning circle-xl event_color" id="#ff902b" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-green circle-xl event_color" id="#37bc9b" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-pink circle-xl event_color" id="#f532e5" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-inverse circle-xl event_color" id="#131e26" href="javascript:void(0)"></a>
+                 </li>
+                 <li class="list-inline-item p-0">
+                    <a class="circle bg-purple circle-xl event_color" id="#7266ba" href="javascript:void(0);"></a>
+                 </li>
+              </ul>
+            </div>
+            <%= f.submit :submit, class: "btn btn-sm btn-primary"%>
+            <%= link_to 'Cancel', key_events_path,class: "btn btn-sm btn-warning" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="card card-default">
+   <div class="card-header">
+      <h3 class="card-title">Create Event</h3>
+   </div>
+   <div class="card-body">
+      <div class="input-group mb-2">
+         <input class="form-control external-event-name" type="text" placeholder="Event name...">
+         <div class="input-group-btn">
+            <button class="btn btn-secondary external-event-add-btn" type="button">Add</button>
+         </div>
+      </div>
+      <p class="text-muted">
+         <small>Choose a Color</small>
+      </p>
+      <ul class="list-inline external-event-color-selector">
+         <li class="list-inline-item p-0">
+            <a class="circle bg-danger circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-primary circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-info circle-xl selected" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-success circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-warning circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-green circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-pink circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-inverse circle-xl" href="#"></a>
+         </li>
+         <li class="list-inline-item p-0">
+            <a class="circle bg-purple circle-xl" href="#"></a>
+         </li>
+      </ul>
+   </div>
+</div>
+ -->

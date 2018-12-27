@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="/assets/theme_css/fullcalendar/fullcalendar.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>Full Calendar
+          <small>Drag and Drop events and tasks</small>
+        </div>
+      </div>
+      <div class="calendar-app">
+        <div class="row">
+          <div class="col-xl-12 col-lg-8">
+            <div class="card card-default">
+              <div class="card-body">
+                <div id="calendar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/components-jqueryui/jquery-ui.js"></script>
+<script src="/assets/theme_js/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+<script src="/assets/theme_js/moment/moment-with-locales.js"></script>
+<script src="/assets/theme_js/fullcalendar/fullcalendar.js"></script>
+<script src="/assets/theme_js/fullcalendar/gcal.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>
+

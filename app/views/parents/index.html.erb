@@ -68,32 +68,3 @@
 <script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
 <script src="/assets/theme_js/js/app.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<script>
-  // var batch_arr = new Array();
-  $(document).on('click','#main_checkbox',function(){
-    if($(this).is(':checked')){
-      $('#batch_action_kind').prop('disabled', false)
-    }else {
-      $('#batch_action_kind').prop('disabled', true)
-    }
-
-  })
-  $(document).on('click','#check_box_selection',function(){
-    if($(this).is(':checked')){
-      $('#batch_action_kind').prop('disabled', false)
-    }else {
-      $('#batch_action_kind').prop('disabled', true)
-    }
-  })
-
-  // $(document).on('change','#batch_action_kind',function(){
-  //   var batch_action = this.value
-  //   $.ajax({
-  //     type: "get",
-  //     url: "/batch_action_parent",
-  //     data:{batch_arr,batch_action}
-  //   })
-  // })
-
-</script>

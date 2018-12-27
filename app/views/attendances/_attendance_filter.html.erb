@@ -1,0 +1,43 @@
+<%= form_tag '/attendances' ,method: :get,remote: true do%>
+  <table class="table bb table-striped filter-table">
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <label class="col-form-label"> Student </label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="form-group">
+            <%= select_tag "student", options_for_select([nil]+Student.pluck(:name,:id)),class: "chosen-select form-control"%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= submit_tag 'Filter',class: "btn btn-sm btn-primary"%>
+          </div>
+        </td>
+        <td>
+          <div>
+          <%= link_to 'Clear filter', attendances_path,class: "btn btn-sm btn-warning", id: "attendance_clear-filter" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<%end%>
+
+<style attendance="text/css">
+  .filter-table td{
+    padding: 5px;
+  }
+  .filter-table td .form-group{
+    margin-bottom: 0;
+  }
+  #attendance_clear-filter{
+    margin-left: -215px;
+  }
+</style>
+

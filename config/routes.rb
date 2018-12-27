@@ -14,11 +14,15 @@ Rails.application.routes.draw do
   resources :levels
   resources :types
   resources :teachers
-  get 'filter_parent' => 'parents#filter_parent'
-  get 'filter_level_list' => 'levels#filter_level_list'
+  resources :attendances
+  resources :key_events
+  resources :events
   get 'batch_action_parent' => 'parents#batch_action_parent'
   get 'check_parent_number' => 'parents#check_parent_number'
   get 'student_status' => 'students#student_status'
+  get 'event_calender' => 'calendars#event_calender'
+  get 'get_event_details' => 'calendars#get_event_details'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

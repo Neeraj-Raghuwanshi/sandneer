@@ -1,0 +1,57 @@
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <label class="col-form-label">Classroom:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%=  @student.levels.collect{|l| l.name}.join(',') %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">Type:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%#=  @student.levels.collect{|l| l.classroom_type}.join(',') %>
+          <%if @student.type_id.present? && @student.status == "Enrolled"%>
+            <%= Type.find(@student.type_id).name %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">Start Date:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.start_date %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">End Date:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.end_date %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">Ethnicity Group:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.ethnicity_group %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

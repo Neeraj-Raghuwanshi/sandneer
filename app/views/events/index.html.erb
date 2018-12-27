@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="/assets/theme_css/sweetalert/sweetalert.css">
+<div class="wrapper">
+  <%= render 'layouts/header'%>
+  <%= render 'layouts/left_sidebar'%>
+  <%= render 'layouts/right_sidebar'%>
+  <section class="section-container">
+    <div class="content-wrapper">
+      <div class="content-heading">
+        <div>
+          Events
+          <ol class="breadcrumb breadcrumb px-0 pb-0">
+            <li class="breadcrumb-item">
+              <%= render_breadcrumbs :separator => ' / ' %>
+            </li>
+          </ol>
+        </div>
+        <div class="ml-auto">
+          <%= link_to(new_event_path,class: 'btn btn-labeled btn-success mb-2') do %>
+             <span class="btn-label"><i class="fa fa-plus"></i></span>New Event
+          <% end %>
+          <!-- <button class="btn btn-labeled btn-primary mb-2" type="button">
+          <span class="btn-label"><i class="fa fa-upload"></i></span>Import Teachers</button> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-2">
+          <div class="ml-auto">
+            <div class="input-group float-right">
+              <div class="desktop-view">
+                <select class="custom-select" id="event_batch" disabled="true">
+                  <option value="0">Bulk action</option>
+                  <option value="1">Delete</option>
+                  <option value="2">Clone</option>
+                  <option value="3">Export</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-xl-4 hide-on-desktop">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'event_filter'%>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-view">
+          <select class="custom-select" id="event_batch" disabled="true">
+            <option value="0">Bulk action</option>
+            <option value="1">Delete</option>
+            <option value="2">Clone</option>
+            <option value="3">Export</option>
+          </select>
+        </div>
+        <div class="col-xl-8">
+          <div class="card b">
+            <div class="card-body">
+               <div id = "event_list_table">
+                <%= render 'event_list' %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 hide-on-mobile">
+          <div class="card card-default">
+            <div class="card-body">
+              <p class="lead">Filters</p>
+              <%= render 'event_filter'%>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <%= render '/layouts/footer'%>
+</div>
+<script src="/assets/theme_js/sweetalert/sweetalert.min.js"></script>
+<script src="/assets/theme_js/js/app.js"></script>
+

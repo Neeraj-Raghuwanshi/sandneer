@@ -16,10 +16,11 @@
  *= require "theme_css/simple-line-icons/css/simple-line-icons.css"
  *= require "theme_css/animate.css/animate.css"
  *= require "theme_css/whirl/whirl.css"
+ *= require "theme_css/datatables.net-bs4/dataTables.bootstrap4.css"
+ *= require "theme_css/datatables.net-keytable-bs/keyTable.bootstrap.css"
+ *= require "theme_css/datatables.net-responsive-bs/responsive.bootstrap.css"
  * require "theme_css/sweetalert/sweetalert.css"
  *= require "custom_pagination.css"
-
  *= require_tree .
- * require nvd3
  *= require_self
  */

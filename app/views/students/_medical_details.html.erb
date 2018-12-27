@@ -1,0 +1,62 @@
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <label class="col-form-label">Doctors Name:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.doctors_name %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">Special Needs:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <% if @student.is_disabled == true %>
+            <div>Yes</div>
+          <% else %>
+            <div>No</div>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">Special Needs Notes:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.disabilities_note %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">SEN Requirements:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <% if @student.special_needs == true %>
+            <div>Yes</div>
+          <% else %>
+            <div>No</div>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="col-form-label">SEN Notes:</label>
+      </td>
+      <td>
+        <div class="form-group">
+          <%= @student.specialneeds_notes%>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

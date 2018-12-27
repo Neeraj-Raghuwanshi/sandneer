@@ -19,38 +19,35 @@
       </thead>
       <tbody>
         <% @levels.order('created_at DESC').each do |level|%>
-        <tr>
-          <td>
-            <div class="checkbox c-checkbox">
-              <label>
-                <input type="checkbox" name = level_arr[] value="<%=level.id%>" id ="level_check_box">
-                <span class="fa fa-check"></span>
-              </label>
-            </div>
-          </td>
-          <td><%=link_to "#{level.name}",level_path(level.id)%></td>
-          <td><%= level.description%></td>
-          <td><%= level.classroom_type%></td>
-          <td><%= level.teacher_id%></td>
-          <td><%= level.students.count%></td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
-              <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
-              <span class="sr-only">primary</span>
-              </button>
-              <div class="dropdown-menu animated" role="menu">
-                <%= link_to 'View',level_path(level.id),class: "dropdown-item"%>
-                <%= link_to 'Edit',edit_level_path(level.id),class: "dropdown-item"%>
-                <%= hidden_field_tag :d_level, level.id %>
-                <a href="JavaScript:void(0);" class= "dropdown-item swal-demo6">Delete</a>
-                <!-- <a class="dropdown-item" href="#">Make Payment</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a> -->
+          <tr>
+            <td>
+              <div class="checkbox c-checkbox">
+                <label>
+                  <input type="checkbox" name = level_arr[] value="<%=level.id%>" id ="level_check_box">
+                  <span class="fa fa-check"></span>
+                </label>
               </div>
-            </div>
-          </td>
-        </tr>
+            </td>
+            <td><%=link_to "#{level.name}",level_path(level.id)%></td>
+            <td><%= level.description%></td>
+            <td><%= level.classroom_type%></td>
+            <td><%= level.teacher_id%></td>
+            <td><%= level.students.count%></td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+                <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+                <span class="sr-only">primary</span>
+                </button>
+                <div class="dropdown-menu animated" role="menu">
+                  <%= link_to 'View',level_path(level.id),class: "dropdown-item"%>
+                  <%= link_to 'Edit',edit_level_path(level.id),class: "dropdown-item"%>
+                  <%= hidden_field_tag :d_level, level.id %>
+                  <a href="JavaScript:void(0);" class= "dropdown-item swal-demo6">Delete</a>
+                </div>
+              </div>
+            </td>
+          </tr>
         <%end%>
       </tbody>
     </table>

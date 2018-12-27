@@ -48,6 +48,7 @@
   right: 0;
   top: 7px;
 }
+
 .previous_page, .next_page{
   font-size: 0;
   position: relative;
@@ -65,34 +66,34 @@
 }
 
 .pagination-link .pagination a:last-child{
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 .pagination-link .pagination a:first-child, .pagination-link .pagination span:first-child{
     margin-left: 0;
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
 }
-/*For Mobile View*/
-@media screen and (max-width: 767px) {
- .hide-on-desktop, .mobile-view{
-    display: block;
-  }
-  .hide-on-mobile, .desktop-view{
-    display: none;
+
+/*Datatables */
+#datatable1_wrapper table.dataTable thead > tr > th.sorting{
+    padding-right: 25px;
   }
 }
 
-/*Level filter mobile view scroll*/
-<style type="text/css">
-  @media screen and (max-width: 767px) {
-  #level_filter_table{
-    overflow-x: auto;
+#datatable15_wrapper table.dataTable thead > tr > th.sorting{
+    padding-right: 25px;
   }
-</style>
+}
 
-/*For Student status and student filter scroll*/
-input.btn-outline-success.active {
+/*Teacher page checkbox*/
+.table .checkbox.table-check {
+    width: auto;
+    margin-left: 0;
+  }
+
+  /*For Student status*/
+  input.btn-outline-success.active {
     background: #27c24c !important;
   }
   input.btn-outline-primary.active{
@@ -108,8 +109,37 @@ input.btn-outline-success.active {
     background: #f05050 !important;
   }
 
+/*For Mobile View*/
+@media screen and (max-width: 767px) {
+ .hide-on-desktop, .mobile-view{
+    display: block;
+  }
+  .hide-on-mobile, .desktop-view{
+    display: none;
+  }
+}
+
+/*Level filter mobile view scroll*/
+  @media screen and (max-width: 767px) {
+  #level_filter_table{
+    overflow-x: auto;
+  }
+
+/*Event filter mobile view scroll*/
+@media screen and (max-width: 767px) {
+#event_list_table{
+  overflow-x: auto;
+}
+
+/*For student filter scroll*/
   @media screen and (max-width: 767px) {
   #student_list_table{
+    overflow-x: auto;
+  }
+
+  /*Type mobile view scroll*/
+   @media screen and (max-width: 767px) {
+  #type_list_table{
     overflow-x: auto;
   }
 

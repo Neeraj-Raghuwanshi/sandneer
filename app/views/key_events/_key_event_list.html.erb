@@ -1,0 +1,49 @@
+<table class="table w-100 table-striped " id="datatable16">
+  <thead>
+    <tr>
+    <th data-check-all style="padding: 0.75rem">
+      <div class="checkbox c-checkbox" data-toggle="tooltip" data-title="Check All" >
+        <label>
+        <input type="checkbox" name = parent_arr1[] value="<%= @key_events.ids %>" class="check_box_selection" id="key_event_main_checkbox" >
+        <span class="fa fa-check"></span>
+        </label>
+      </div>
+      </th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Color</th>
+      <th width="15%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @key_events.order('created_at DESC').each do |k_event|%>
+      <tr>
+        <td>
+          <div class="checkbox c-checkbox table-check">
+            <label>
+            <input type="checkbox" name = teacher_arr[] value="<%= k_event.id %>" id="keyevent_check_selection">
+            <span class="fa fa-check"></span>
+            </label>
+          </div>
+        </td>
+        <td><%= k_event.id%></td>
+        <td><%= k_event.name %></td>
+        <td><%= k_event.color %></td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-primary" type="button"><span class="fa fa-cog"></span></button>
+            <button class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
+            <span class="sr-only">primary</span>
+            </button>
+            <div class="dropdown-menu" role="menu">
+              <%= link_to 'View',key_event_path(k_event.id),class: "dropdown-item"%>
+              <%= link_to 'Edit',edit_key_event_path(k_event.id),class: "dropdown-item"%>
+              <%= hidden_field_tag :d_keyevent, k_event.id %>
+              <a href="JavaScript:void(0);" class= "dropdown-item swal-demo11">Delete</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

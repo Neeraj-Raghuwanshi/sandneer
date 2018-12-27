@@ -23,18 +23,29 @@
 //= require "theme_js/jquery-localize/jquery.localize.js"
 //= require "theme_js/jquery-sparkline/jquery.sparkline.js"
 //= require "theme_js/parsleyjs/parsley.js"
+//= require "theme_js/jquery-slimscroll/jquery.slimscroll.js"
+//= require "theme_js/datatables.net/jquery.dataTables.js"
+//= require "theme_js/datatables.net-bs4/dataTables.bootstrap4.js"
+//= require "theme_js/datatables.net-buttons/dataTables.buttons.js"
+//= require "theme_js/datatables.net-buttons-bs/buttons.bootstrap.js"
+//= require "theme_js/datatables.net-buttons/buttons.colVis.js"
+//= require "theme_js/datatables.net-buttons/buttons.flash.js"
+//= require "theme_js/datatables.net-buttons/buttons.html5.js"
+//= require "theme_js/datatables.net-buttons/buttons.print.js"
+//= require "theme_js/datatables.net-keytable/dataTables.keyTable.js"
+//= require "theme_js/datatables.net-responsive/dataTables.responsive.js"
+//= require "theme_js/datatables.net-responsive-bs/responsive.bootstrap.js"
 //= require jquery_nested_form
-// require highcharts
+//= require custom.js
 //= require Chart.bundle
 //= require chartkick
 //= require turbolinks
-// require chart
-// require nvd3
-// require highcharts
 // require_tree .
-// $('.pagination[remote=true] a').live('click', function() {
-//   debugger
-//   window.history.pushState(null, 'hi', $(this).attr("href"));
-//   $.rails.handleRemote($(this));
-//   return false;
-// });
+
+$(document).on('turbolinks:before-cache', function(){
+  var dataTable =  $($.fn.dataTable.tables(true)).DataTable()
+  if (dataTable != null){
+    dataTable.destroy();
+    dataTable = null;
+  }
+})

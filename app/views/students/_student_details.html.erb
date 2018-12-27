@@ -1,0 +1,52 @@
+<table class="table bb">
+  <tbody>
+    <tr>
+      <td>
+        <strong>Address</strong>
+      </td>
+      <td><%= @student.address %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Postcode</strong>
+      </td>
+      <td><%= @student.postcode %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Home Phone</strong>
+      </td>
+      <td><%= @student.home_phone %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Mobile</strong>
+      </td>
+      <td><%= @student.mobile %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Email</strong>
+      </td>
+      <td><%= @student.email %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Gender</strong>
+      </td>
+      <td><%= @student.gender %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>D.O.B</strong>
+      </td>
+      <td><%= @student.dob %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Created at</strong>
+      </td>
+      <td><%= @student.created_at.strftime('%d %B,%Y')%></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,74 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add New Student</h4>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">First Name</label>
+              <div class="col-xl-8">
+                <input class="form-control" type="text" placeholder="First Name">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">Last Name</label>
+              <div class="col-xl-8">
+                <input class="form-control" type="text" placeholder="Last Name">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">D.O.B</label>
+              <div class="col-xl-8">
+                <input class="form-control" type="date" placeholder="D.O.B">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">Gender</label>
+              <div class="col-xl-8">
+                <select class="custom-select custom-select-md">
+                  <option selected="">Select Gender</option>
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label"></label>
+              <div class="col-xl-8">
+                <button class="btn btn-labeled btn-success mb-2" type="button" id= "swal-demo5">
+                <span class="btn-label"><i class="fa fa-plus" ></i></span>Add Another Student
+                </button>
+              </div>
+            </div>
+          </fieldset>
+          <!-- This section will only show once they have clicked the Add Another Student button. Admin fills in the form and if they need to add another student they will click on that button and this section will show added students. Students will be saved once clicked on save -->
+          <fieldset>
+            <div class="form-group row">
+              <label class="col-xl-3 col-form-label">Students</label>
+              <div class="col-xl-8">
+                <b>Waqas Ahmad, Test Student</b>
+                <p> You must click Save to save the Students</p>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer card-footer">
+        <button class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="button">Save</button>
+      </div>
+    </div>
+  </div>
